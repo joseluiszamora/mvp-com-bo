@@ -33,21 +33,21 @@ export default function Testimonials() {
   return (
     <section
       id="testimonios"
-      className="section-padding bg-gradient-to-b from-white to-light dark:from-gray-900 dark:to-dark"
+      className="section-padding bg-gray-50 dark:bg-gray-900 transition-colors duration-300"
     >
       <div className="container-custom">
         {/* Header */}
-        <div className="text-center mx-auto mb-16">
-          <span className="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-semibold mb-4">
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <span className="inline-block px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary rounded-full text-sm font-semibold mb-4">
             Testimonios
           </span>
-          <h2 className="text-heading text-3xl md:text-4xl lg:text-5xl mb-6">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6">
             Lo Que Dicen Nuestros{" "}
             <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
               Clientes
             </span>
           </h2>
-          <p className="text-body text-lg text-gray dark:text-gray-400">
+          <p className="text-lg text-gray-600 dark:text-gray-400">
             Historias de éxito de empresas que confiaron en nosotros para
             transformar sus ideas en realidad.
           </p>
@@ -58,7 +58,7 @@ export default function Testimonials() {
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
-              className="group relative bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-gray-100 dark:border-gray-700"
+              className="group relative bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-2xl hover:shadow-gray-200/50 dark:hover:shadow-black/20 transition-all duration-500 hover:-translate-y-2 border border-gray-100 dark:border-gray-700"
             >
               {/* Quote Icon */}
               <div className="absolute -top-4 -right-4 w-12 h-12 bg-primary rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
@@ -68,12 +68,12 @@ export default function Testimonials() {
               {/* Stars */}
               <div className="flex gap-1 mb-4">
                 {[...Array(testimonial.rating)].map((_, i) => (
-                  <IconStarFilled key={i} className="w-5 h-5 text-accent" />
+                  <IconStarFilled key={i} className="w-5 h-5 text-amber-400" />
                 ))}
               </div>
 
               {/* Content */}
-              <p className="text-gray dark:text-gray-300 mb-6 leading-relaxed italic">
+              <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed italic">
                 &ldquo;{testimonial.content}&rdquo;
               </p>
 
@@ -85,17 +85,17 @@ export default function Testimonials() {
                   className="w-14 h-14 rounded-full object-cover ring-2 ring-primary/20"
                 />
                 <div>
-                  <h4 className="font-semibold text-dark dark:text-white">
+                  <h4 className="font-semibold text-gray-900 dark:text-white">
                     {testimonial.name}
                   </h4>
-                  <p className="text-sm text-gray dark:text-gray-400">
+                  <p className="text-sm text-gray-500 dark:text-gray-400">
                     {testimonial.role}
                   </p>
                 </div>
               </div>
 
               {/* Hover Gradient */}
-              <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/5 to-secondary/5 dark:from-primary/10 dark:to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
             </div>
           ))}
         </div>

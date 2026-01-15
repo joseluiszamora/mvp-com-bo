@@ -29,7 +29,7 @@ export default function Header() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-white/90 dark:bg-dark/90 backdrop-blur-md shadow-lg py-2"
+          ? "bg-white/95 dark:bg-gray-950/95 backdrop-blur-md shadow-lg shadow-gray-200/20 dark:shadow-black/20 py-2"
           : "bg-transparent py-4"
       }`}
     >
@@ -43,7 +43,7 @@ export default function Header() {
             <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent group-hover:from-secondary group-hover:to-primary transition-all duration-500">
               MVP
             </span>
-            <span className="text-dark dark:text-white">.dev</span>
+            <span className="text-gray-900 dark:text-white">.dev</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -52,7 +52,7 @@ export default function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-dark dark:text-white hover:text-primary dark:hover:text-primary font-medium transition-colors relative group py-2"
+                className="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary font-medium transition-colors relative group py-2"
               >
                 {link.label}
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-secondary transition-all duration-300 group-hover:w-full" />
@@ -73,7 +73,7 @@ export default function Header() {
             <ThemeToggle />
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="p-2 text-dark dark:text-white hover:text-primary transition-colors"
+              className="p-2 text-gray-700 dark:text-gray-300 hover:text-primary transition-colors"
               aria-label="Toggle menu"
             >
               {isMenuOpen ? (
@@ -97,7 +97,7 @@ export default function Header() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setIsMenuOpen(false)}
-                className="text-dark dark:text-white hover:text-primary hover:bg-primary/5 font-medium transition-all py-3 px-4 rounded-lg"
+                className="text-gray-700 dark:text-gray-300 hover:text-primary hover:bg-primary/5 dark:hover:bg-primary/10 font-medium transition-all py-3 px-4 rounded-lg"
               >
                 {link.label}
               </Link>

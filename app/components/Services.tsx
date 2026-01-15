@@ -59,25 +59,25 @@ export default function Services() {
   return (
     <section
       id="servicios"
-      className="section-padding bg-white dark:bg-gray-900 relative overflow-hidden"
+      className="section-padding bg-gray-50 dark:bg-gray-900 relative overflow-hidden transition-colors duration-300"
     >
       {/* Background Decoration */}
-      <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-gradient-to-bl from-primary/5 to-transparent rounded-bl-full" />
-      <div className="absolute bottom-0 left-0 w-1/3 h-1/3 bg-gradient-to-tr from-secondary/5 to-transparent rounded-tr-full" />
+      <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-gradient-to-bl from-primary/5 dark:from-primary/10 to-transparent rounded-bl-full" />
+      <div className="absolute bottom-0 left-0 w-1/3 h-1/3 bg-gradient-to-tr from-secondary/5 dark:from-secondary/10 to-transparent rounded-tr-full" />
 
       <div className="container-custom relative z-10">
         {/* Header */}
-        <div className="text-center mx-auto mb-16">
-          <span className="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-semibold mb-4">
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <span className="inline-block px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary rounded-full text-sm font-semibold mb-4">
             Nuestros Servicios
           </span>
-          <h2 className="text-heading text-3xl md:text-4xl lg:text-5xl mb-6">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6">
             Soluciones Tecnológicas{" "}
             <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
               Integrales
             </span>
           </h2>
-          <p className="text-body text-lg text-gray dark:text-gray-400">
+          <p className="text-lg text-gray-600 dark:text-gray-400">
             Ofrecemos servicios completos de desarrollo de software para llevar
             tu negocio al siguiente nivel digital.
           </p>
@@ -88,11 +88,11 @@ export default function Services() {
           {services.map((service, index) => (
             <div
               key={index}
-              className="group relative bg-light dark:bg-gray-800 rounded-2xl p-8 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-transparent hover:border-primary/20 overflow-hidden"
+              className="group relative bg-white dark:bg-gray-800 rounded-2xl p-8 hover:shadow-2xl hover:shadow-gray-200/50 dark:hover:shadow-black/20 transition-all duration-500 hover:-translate-y-2 border border-gray-100 dark:border-gray-700 hover:border-primary/20 dark:hover:border-primary/30 overflow-hidden"
             >
               {/* Gradient Background on Hover */}
               <div
-                className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}
+                className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-5 dark:group-hover:opacity-10 transition-opacity duration-500`}
               />
 
               {/* Icon */}
@@ -103,10 +103,10 @@ export default function Services() {
               </div>
 
               {/* Content */}
-              <h3 className="text-xl font-semibold text-dark dark:text-white mb-4 group-hover:text-primary transition-colors">
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4 group-hover:text-primary transition-colors">
                 {service.title}
               </h3>
-              <p className="text-gray dark:text-gray-400 leading-relaxed mb-6">
+              <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
                 {service.description}
               </p>
 

@@ -49,34 +49,51 @@ export default function Portfolio() {
   return (
     <section
       id="portafolio"
-      className="section-padding bg-light dark:bg-dark relative overflow-hidden"
+      className="section-padding bg-white dark:bg-gray-950 relative overflow-hidden transition-colors duration-300"
     >
       {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-50 dark:opacity-30">
+      <div className="absolute inset-0 opacity-30 dark:opacity-20">
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage: `linear-gradient(90deg, var(--color-gray) 1px, transparent 1px),
-              linear-gradient(var(--color-gray) 1px, transparent 1px)`,
+            backgroundImage: `linear-gradient(90deg, #e5e7eb 1px, transparent 1px),
+              linear-gradient(#e5e7eb 1px, transparent 1px)`,
             backgroundSize: "60px 60px",
-            opacity: 0.1,
           }}
         />
       </div>
+      <div
+        className="dark:hidden absolute inset-0"
+        style={{
+          backgroundImage: `linear-gradient(90deg, #e5e7eb 1px, transparent 1px),
+          linear-gradient(#e5e7eb 1px, transparent 1px)`,
+          backgroundSize: "60px 60px",
+          opacity: 0.3,
+        }}
+      />
+      <div
+        className="hidden dark:block absolute inset-0"
+        style={{
+          backgroundImage: `linear-gradient(90deg, #1f2937 1px, transparent 1px),
+          linear-gradient(#1f2937 1px, transparent 1px)`,
+          backgroundSize: "60px 60px",
+          opacity: 0.3,
+        }}
+      />
 
       <div className="container-custom relative z-10">
         {/* Header */}
-        <div className="text-center mx-auto mb-16">
-          <span className="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-semibold mb-4">
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <span className="inline-block px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary rounded-full text-sm font-semibold mb-4">
             Portafolio
           </span>
-          <h2 className="text-heading text-3xl md:text-4xl lg:text-5xl mb-6">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6">
             Proyectos que{" "}
             <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
               Inspiran
             </span>
           </h2>
-          <p className="text-body text-lg text-gray dark:text-gray-400">
+          <p className="text-lg text-gray-600 dark:text-gray-400">
             Conoce algunos de los proyectos exitosos que hemos desarrollado para
             nuestros clientes.
           </p>
@@ -87,7 +104,7 @@ export default function Portfolio() {
           {projects.map((project, index) => (
             <div
               key={index}
-              className="group relative bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500"
+              className="group relative bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-gray-200/50 dark:hover:shadow-black/30 transition-all duration-500 border border-gray-100 dark:border-gray-800"
             >
               {/* Image */}
               <div className="relative h-64 overflow-hidden">
@@ -128,10 +145,10 @@ export default function Portfolio() {
 
               {/* Content */}
               <div className="p-6">
-                <h3 className="text-xl font-semibold text-dark dark:text-white mb-2 group-hover:text-primary transition-colors">
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2 group-hover:text-primary transition-colors">
                   {project.title}
                 </h3>
-                <p className="text-gray dark:text-gray-400 mb-4 line-clamp-2">
+                <p className="text-gray-600 dark:text-gray-400 mb-4 line-clamp-2">
                   {project.description}
                 </p>
 
@@ -140,7 +157,7 @@ export default function Portfolio() {
                   {project.technologies.map((tech, techIndex) => (
                     <span
                       key={techIndex}
-                      className="px-3 py-1 bg-light dark:bg-gray-700 text-sm text-gray dark:text-gray-300 rounded-full"
+                      className="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-sm text-gray-600 dark:text-gray-400 rounded-full"
                     >
                       {tech}
                     </span>
