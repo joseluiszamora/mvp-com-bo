@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { IconMenu2, IconX } from "@tabler/icons-react";
 import ThemeToggle from "./ThemeToggle";
 
@@ -29,21 +30,30 @@ export default function Header() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-white/95 dark:bg-gray-950/95 backdrop-blur-md shadow-lg shadow-gray-200/20 dark:shadow-black/20 py-2"
-          : "bg-transparent py-4"
+          ? "bg-white/95 dark:bg-gray-950/95 backdrop-blur-md shadow-lg dark:shadow-black/20 py-3"
+          : "bg-transparent dark:bg-gray-950/80 dark:backdrop-blur-sm py-4"
       }`}
     >
       <div className="container-custom">
         <nav className="flex items-center justify-between">
           {/* Logo */}
-          <Link
-            href="/"
-            className="text-2xl font-bold font-montserrat tracking-tight group"
-          >
-            <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent group-hover:from-secondary group-hover:to-primary transition-all duration-500">
-              MVP
-            </span>
-            <span className="text-gray-900 dark:text-white">.dev</span>
+          <Link href="/" className="flex items-center gap-3 group">
+            <div className="relative w-10 h-10 flex-shrink-0">
+              <Image
+                src="/icon.png"
+                alt="MVP Logo"
+                width={40}
+                height={40}
+                className="object-contain transition-transform duration-300 group-hover:scale-110"
+                priority
+              />
+            </div>
+            <div className="text-2xl font-bold font-montserrat tracking-tight">
+              <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent group-hover:from-secondary group-hover:to-primary transition-all duration-500">
+                MVP
+              </span>
+              <span className="text-gray-900 dark:text-white">.dev</span>
+            </div>
           </Link>
 
           {/* Desktop Navigation */}

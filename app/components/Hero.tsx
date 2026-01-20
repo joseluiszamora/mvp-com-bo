@@ -130,60 +130,73 @@ export default function Hero() {
 
       {/* Content */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-32 lg:py-40">
-        <div className="max-w-3xl">
+        <div className="max-w-4xl">
           {/* Welcome Text */}
-          <p className="text-white/80 text-sm tracking-[0.3em] uppercase mb-6 animate-fade-in">
-            BIENVENIDO
+          <p className="text-white/70 text-xs sm:text-sm tracking-[0.3em] uppercase mb-6 sm:mb-8 animate-fade-in font-medium">
+            WELCOME
           </p>
 
           {/* Main Heading with Outline */}
           <h1
-            className="mb-6 animate-fade-in-up"
+            className="mb-6 sm:mb-8 animate-fade-in-up"
             style={{ animationDelay: "0.1s" }}
           >
             <span
-              className="block text-5xl sm:text-6xl lg:text-8xl font-bold leading-none mb-2 text-transparent"
+              className="block text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold leading-[0.9] mb-2 sm:mb-3 text-transparent"
               style={{ WebkitTextStroke: "2px white" }}
             >
               Creando
             </span>
             <span
-              className="block text-5xl sm:text-6xl lg:text-8xl font-bold leading-none mb-2 text-transparent"
+              className="block text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold leading-[0.9] mb-2 sm:mb-3 text-transparent"
               style={{ WebkitTextStroke: "2px white" }}
             >
               Soluciones
             </span>
-            <span className="block text-5xl sm:text-6xl lg:text-8xl font-bold leading-none text-primary">
+            <span
+              className="block text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold leading-[0.9] mb-2 sm:mb-3 text-transparent"
+              style={{ WebkitTextStroke: "2px white" }}
+            >
               Digitales
             </span>
           </h1>
 
-          {/* Description */}
-          <p
-            className="text-white/80 text-lg mb-8 max-w-xl animate-fade-in-up"
+          {/* Subtitle with Orange Accent */}
+          <h2
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 sm:mb-8 animate-fade-in-up"
             style={{ animationDelay: "0.2s" }}
           >
-            Transformamos ideas innovadoras en productos digitales
-            excepcionales. Desarrollo web, aplicaciones móviles y soluciones
-            cloud que impulsan tu negocio hacia el futuro.
+            <span className="text-white">Liderando </span>
+            <span className="text-primary">Cambios</span>
+          </h2>
+
+          {/* Description */}
+          <p
+            className="text-white/70 text-base sm:text-lg md:text-xl mb-8 sm:mb-10 max-w-2xl animate-fade-in-up leading-relaxed"
+            style={{ animationDelay: "0.3s" }}
+          >
+            Nos especializamos en transformar ideas innovadoras en productos
+            digitales excepcionales. Desde modernas aplicaciones web hasta
+            soluciones móviles, impulsamos su negocio para prosperar en el
+            futuro digital.
           </p>
 
           {/* CTA Buttons */}
           <div
-            className="flex flex-wrap gap-4 animate-fade-in-up"
-            style={{ animationDelay: "0.3s" }}
+            className="flex flex-wrap gap-4 sm:gap-6 animate-fade-in-up"
+            style={{ animationDelay: "0.4s" }}
           >
             <Link
               href="#contacto"
-              className="px-8 py-4 border-2 border-white text-white font-semibold uppercase text-sm hover:bg-white hover:text-gray-900 transition-all duration-300 rounded-md"
+              className="px-6 sm:px-8 py-3 sm:py-4 border-2 border-white text-white font-semibold uppercase text-xs sm:text-sm hover:bg-white hover:text-gray-900 transition-all duration-300 rounded-md tracking-wider"
             >
-              Contáctanos
+              Contact Us
             </Link>
             <Link
               href="#servicios"
-              className="px-8 py-4 bg-primary text-white font-semibold uppercase text-sm hover:bg-secondary transition-all duration-300 rounded-md inline-flex items-center gap-2 group"
+              className="px-6 sm:px-8 py-3 sm:py-4 bg-primary text-white font-semibold uppercase text-xs sm:text-sm hover:bg-secondary transition-all duration-300 rounded-md inline-flex items-center gap-2 group tracking-wider shadow-lg shadow-primary/30"
             >
-              Nuestros Servicios
+              Our Services
               <IconArrowRight
                 size={18}
                 className="group-hover:translate-x-1 transition-transform"
