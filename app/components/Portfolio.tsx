@@ -21,7 +21,7 @@ const projects = [
     image:
       "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop",
     technologies: ["React", "Node.js", "MongoDB"],
-    color: "from-blue-500 to-cyan-500",
+    color: "from-primary to-secondary",
   },
   {
     title: "HealthConnect",
@@ -41,7 +41,7 @@ const projects = [
     image:
       "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=400&fit=crop",
     technologies: ["Vue.js", "Python", "AWS"],
-    color: "from-orange-500 to-red-500",
+    color: "from-primary via-accent to-secondary",
   },
 ];
 

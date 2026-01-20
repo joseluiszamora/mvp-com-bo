@@ -16,7 +16,8 @@ const services = [
     title: "Desarrollo Web",
     description:
       "Aplicaciones web modernas, rápidas y escalables con las últimas tecnologías como React, Next.js y Node.js.",
-    color: "from-blue-500 to-cyan-500",
+    color: "from-primary to-secondary",
+    iconColor: "text-primary",
   },
   {
     icon: IconDeviceMobile,
@@ -24,13 +25,15 @@ const services = [
     description:
       "Aplicaciones nativas y multiplataforma para iOS y Android con React Native y Flutter.",
     color: "from-purple-500 to-pink-500",
+    iconColor: "text-purple-500",
   },
   {
     icon: IconCloud,
     title: "Cloud & DevOps",
     description:
       "Infraestructura en la nube, CI/CD, y optimización de rendimiento con AWS, GCP y Azure.",
-    color: "from-orange-500 to-red-500",
+    color: "from-blue-500 to-cyan-500",
+    iconColor: "text-blue-500",
   },
   {
     icon: IconBrandFigma,
@@ -38,13 +41,15 @@ const services = [
     description:
       "Interfaces intuitivas y experiencias de usuario excepcionales que convierten visitantes en clientes.",
     color: "from-green-500 to-emerald-500",
+    iconColor: "text-green-500",
   },
   {
     icon: IconRocket,
     title: "MVP & Startups",
     description:
       "Desarrollo rápido de prototipos y productos mínimos viables para validar tu idea de negocio.",
-    color: "from-primary to-secondary",
+    color: "from-primary via-secondary to-accent",
+    iconColor: "text-secondary",
   },
   {
     icon: IconHeadset,
@@ -52,6 +57,7 @@ const services = [
     description:
       "Mantenimiento continuo, actualizaciones y soporte técnico 24/7 para tu tranquilidad.",
     color: "from-teal-500 to-cyan-500",
+    iconColor: "text-teal-500",
   },
 ];
 

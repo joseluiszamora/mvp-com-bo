@@ -1,326 +1,285 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import {
+  IconBrandFacebook,
+  IconBrandTwitter,
+  IconBrandInstagram,
+  IconBrandYoutube,
   IconArrowRight,
-  IconBrandReact,
-  IconBrandNodejs,
-  IconBrandTypescript,
-  IconBrandAws,
-  IconBrandDocker,
-  IconBrandFigma,
-  IconCheck,
-  IconSparkles,
-  IconRocket,
 } from "@tabler/icons-react";
-
-const features = [
-  { text: "Desarrollo ágil", icon: IconRocket },
-  { text: "Código de calidad", icon: IconCheck },
-  { text: "Soporte 24/7", icon: IconSparkles },
-];
-
-const techIcons = [
-  {
-    Icon: IconBrandReact,
-    color: "text-cyan-400",
-    bg: "bg-cyan-500/20",
-    name: "React",
-  },
-  {
-    Icon: IconBrandNodejs,
-    color: "text-green-400",
-    bg: "bg-green-500/20",
-    name: "Node.js",
-  },
-  {
-    Icon: IconBrandTypescript,
-    color: "text-blue-400",
-    bg: "bg-blue-500/20",
-    name: "TypeScript",
-  },
-  {
-    Icon: IconBrandAws,
-    color: "text-orange-400",
-    bg: "bg-orange-500/20",
-    name: "AWS",
-  },
-  {
-    Icon: IconBrandDocker,
-    color: "text-sky-400",
-    bg: "bg-sky-500/20",
-    name: "Docker",
-  },
-  {
-    Icon: IconBrandFigma,
-    color: "text-purple-400",
-    bg: "bg-purple-500/20",
-    name: "Figma",
-  },
-];
-
-const stats = [
-  { value: "50+", label: "Proyectos Entregados" },
-  { value: "30+", label: "Clientes Satisfechos" },
-  { value: "5+", label: "Años de Experiencia" },
-];
 
 export default function Hero() {
   const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <section
       id="inicio"
-      className="relative min-h-screen flex items-center overflow-hidden"
+      className="relative min-h-screen flex items-center overflow-hidden bg-gray-900"
     >
-      {/* Background Image with Parallax Effect */}
-      <div
-        className="absolute inset-0 z-0"
-        style={{
-          transform: `translateY(${scrollY * 0.5}px)`,
-        }}
-      >
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-110"
+      {/* Background Image with Parallax */}
+      <div className="absolute inset-0">
+        <Image
+          src="/images/12690.jpg"
+          alt="MVP Team"
+          fill
+          className="object-cover"
           style={{
-            backgroundImage: "url('/images/12690.jpg')",
+            transform: `translateY(${scrollY * 0.5}px)`,
           }}
+          priority
         />
         {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/80" />
-        {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-transparent to-secondary/20" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/70 to-black/60" />
       </div>
 
-      {/* Animated Particles/Grid Overlay */}
-      <div className="absolute inset-0 z-[1] overflow-hidden opacity-30">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `radial-gradient(circle at 2px 2px, rgba(255,255,255,0.15) 1px, transparent 0)`,
-            backgroundSize: "40px 40px",
-          }}
-        />
-      </div>
+      {/* Decorative Elements */}
+      <div className="absolute inset-0 pointer-events-none">
+        {/* Large White Circle - Left */}
+        <div className="absolute -left-32 top-1/4 w-96 h-96 border-[40px] border-white/10 rounded-full" />
 
-      {/* Floating Tech Icons - Left Side */}
-      <div className="absolute left-8 top-1/2 -translate-y-1/2 hidden xl:flex flex-col gap-4 z-10">
-        {techIcons.slice(0, 3).map(({ Icon, color, bg, name }, index) => (
-          <div
-            key={name}
-            className="group relative"
-            style={{
-              transform: `translateY(${
-                Math.sin(scrollY * 0.01 + index) * 10
-              }px)`,
-              transition: "transform 0.3s ease-out",
-            }}
-          >
+        {/* Large Orange Circle - Right */}
+        <div className="absolute -right-32 top-1/3 w-80 h-80 bg-primary/20 rounded-full blur-3xl" />
+
+        {/* Dot Grid - Top Right */}
+        <div className="absolute top-20 right-20 w-32 h-32 opacity-30 hidden lg:block">
+          <div className="grid grid-cols-8 gap-2">
+            {[...Array(64)].map((_, i) => (
+              <div key={i} className="w-1 h-1 bg-white rounded-full" />
+            ))}
+          </div>
+        </div>
+
+        {/* Circular Dot Grid - Center */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 opacity-20 hidden lg:block">
+          {[...Array(8)].map((_, ring) => (
             <div
-              className={`p-3 ${bg} backdrop-blur-md rounded-2xl border border-white/20 shadow-2xl hover:scale-110 transition-all duration-300 cursor-pointer`}
+              key={ring}
+              className="absolute inset-0 flex items-center justify-center"
             >
-              <Icon className={`w-7 h-7 ${color}`} />
-            </div>
-            <span className="absolute left-full ml-3 top-1/2 -translate-y-1/2 px-3 py-1 bg-white/10 backdrop-blur-md text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap border border-white/20">
-              {name}
-            </span>
-          </div>
-        ))}
-      </div>
-
-      {/* Floating Tech Icons - Right Side */}
-      <div className="absolute right-8 top-1/2 -translate-y-1/2 hidden xl:flex flex-col gap-4 z-10">
-        {techIcons.slice(3, 6).map(({ Icon, color, bg, name }, index) => (
-          <div
-            key={name}
-            className="group relative"
-            style={{
-              transform: `translateY(${
-                Math.sin(scrollY * 0.01 + index + 3) * 10
-              }px)`,
-              transition: "transform 0.3s ease-out",
-            }}
-          >
-            <div
-              className={`p-3 ${bg} backdrop-blur-md rounded-2xl border border-white/20 shadow-2xl hover:scale-110 transition-all duration-300 cursor-pointer`}
-            >
-              <Icon className={`w-7 h-7 ${color}`} />
-            </div>
-            <span className="absolute right-full mr-3 top-1/2 -translate-y-1/2 px-3 py-1 bg-white/10 backdrop-blur-md text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap border border-white/20">
-              {name}
-            </span>
-          </div>
-        ))}
-      </div>
-
-      <div className="container-custom relative z-10 pt-32 pb-20">
-        <div className="max-w-5xl mx-auto">
-          {/* Badge */}
-          <div className="flex justify-center mb-8">
-            <div className="inline-flex items-center gap-3 px-5 py-2.5 bg-white/10 backdrop-blur-md rounded-full border border-white/20 shadow-2xl">
-              <span className="relative flex h-2.5 w-2.5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
-              </span>
-              <span className="text-sm font-medium text-white">
-                Disponibles para nuevos proyectos
-              </span>
-            </div>
-          </div>
-
-          {/* Main Heading */}
-          <div className="text-center mb-8">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight">
-              <span className="text-white drop-shadow-lg">
-                Transformamos Ideas en
-              </span>
-              <br />
-              <span className="relative inline-block mt-2">
-                <span className="bg-gradient-to-r from-cyan-400 via-primary to-secondary bg-clip-text text-transparent drop-shadow-lg">
-                  Productos Digitales
-                </span>
-                <svg
-                  className="absolute -bottom-2 left-0 w-full"
-                  viewBox="0 0 300 12"
-                  fill="none"
-                >
-                  <path
-                    d="M2 10C50 4 150 2 298 10"
-                    stroke="url(#gradient)"
-                    strokeWidth="3"
-                    strokeLinecap="round"
+              {[...Array(ring * 8 + 8)].map((__, dot) => {
+                const angle = (dot / (ring * 8 + 8)) * Math.PI * 2;
+                const radius = (ring + 1) * 20;
+                return (
+                  <div
+                    key={dot}
+                    className="absolute w-1 h-1 bg-white rounded-full"
+                    style={{
+                      left: `calc(50% + ${Math.cos(angle) * radius}px)`,
+                      top: `calc(50% + ${Math.sin(angle) * radius}px)`,
+                    }}
                   />
-                  <defs>
-                    <linearGradient
-                      id="gradient"
-                      x1="0%"
-                      y1="0%"
-                      x2="100%"
-                      y2="0%"
-                    >
-                      <stop offset="0%" stopColor="#22d3ee" />
-                      <stop offset="50%" stopColor="#6366F1" />
-                      <stop offset="100%" stopColor="#F59E0B" />
-                    </linearGradient>
-                  </defs>
-                </svg>
-              </span>
-              <br />
-              <span className="text-white mt-2 inline-block drop-shadow-lg">
-                Exitosos
-              </span>
-            </h1>
-          </div>
+                );
+              })}
+            </div>
+          ))}
+        </div>
 
-          {/* Subheading */}
-          <p className="text-lg md:text-xl text-gray-200 text-center mx-auto mb-10 leading-relaxed">
-            Somos una agencia de desarrollo de software especializada en crear{" "}
-            <strong className="text-cyan-400 font-semibold">
-              aplicaciones web
-            </strong>
-            , <strong className="text-primary font-semibold">móviles</strong> y{" "}
-            <strong className="text-secondary font-semibold">
-              soluciones cloud
-            </strong>{" "}
-            que impulsan el crecimiento de tu negocio.
+        {/* Number "01." - Bottom Right */}
+        <div className="absolute bottom-20 right-20 text-[200px] font-bold leading-none opacity-10 hidden lg:block">
+          <span
+            className="text-transparent"
+            style={{ WebkitTextStroke: "2px white" }}
+          >
+            01.
+          </span>
+        </div>
+      </div>
+
+      {/* Social Media Bar - Left Side */}
+      <div className="absolute left-8 top-1/2 -translate-y-1/2 z-20 hidden lg:block">
+        <div className="bg-primary rounded-full p-4 flex flex-col gap-4 shadow-2xl">
+          <Link
+            href="#"
+            className="text-white hover:scale-110 transition-transform"
+            aria-label="Twitter"
+          >
+            <IconBrandTwitter size={20} />
+          </Link>
+          <Link
+            href="#"
+            className="text-white hover:scale-110 transition-transform"
+            aria-label="Facebook"
+          >
+            <IconBrandFacebook size={20} />
+          </Link>
+          <Link
+            href="#"
+            className="text-white hover:scale-110 transition-transform"
+            aria-label="Instagram"
+          >
+            <IconBrandInstagram size={20} />
+          </Link>
+          <Link
+            href="#"
+            className="text-white hover:scale-110 transition-transform"
+            aria-label="YouTube"
+          >
+            <IconBrandYoutube size={20} />
+          </Link>
+        </div>
+      </div>
+
+      {/* Content */}
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-32 lg:py-40">
+        <div className="max-w-3xl">
+          {/* Welcome Text */}
+          <p className="text-white/80 text-sm tracking-[0.3em] uppercase mb-6 animate-fade-in">
+            BIENVENIDO
           </p>
 
-          {/* Features Pills */}
-          <div className="flex flex-wrap justify-center gap-3 mb-12">
-            {features.map(({ text, icon: Icon }, index) => (
-              <div
-                key={index}
-                className="flex items-center gap-2 px-5 py-2.5 bg-white/10 backdrop-blur-md rounded-full border border-white/20 hover:bg-white/20 hover:border-white/30 transition-all duration-300 hover:-translate-y-1"
-              >
-                <div className="p-1 bg-primary/30 rounded-full">
-                  <Icon className="w-4 h-4 text-primary" />
-                </div>
-                <span className="text-sm font-medium text-white">{text}</span>
-              </div>
-            ))}
-          </div>
+          {/* Main Heading with Outline */}
+          <h1
+            className="mb-6 animate-fade-in-up"
+            style={{ animationDelay: "0.1s" }}
+          >
+            <span
+              className="block text-5xl sm:text-6xl lg:text-8xl font-bold leading-none mb-2 text-transparent"
+              style={{ WebkitTextStroke: "2px white" }}
+            >
+              Creando
+            </span>
+            <span
+              className="block text-5xl sm:text-6xl lg:text-8xl font-bold leading-none mb-2 text-transparent"
+              style={{ WebkitTextStroke: "2px white" }}
+            >
+              Soluciones
+            </span>
+            <span className="block text-5xl sm:text-6xl lg:text-8xl font-bold leading-none text-primary">
+              Digitales
+            </span>
+          </h1>
+
+          {/* Description */}
+          <p
+            className="text-white/80 text-lg mb-8 max-w-xl animate-fade-in-up"
+            style={{ animationDelay: "0.2s" }}
+          >
+            Transformamos ideas innovadoras en productos digitales
+            excepcionales. Desarrollo web, aplicaciones móviles y soluciones
+            cloud que impulsan tu negocio hacia el futuro.
+          </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-20">
+          <div
+            className="flex flex-wrap gap-4 animate-fade-in-up"
+            style={{ animationDelay: "0.3s" }}
+          >
             <Link
               href="#contacto"
-              className="group relative inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-primary to-secondary text-white font-semibold rounded-xl overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-primary/40 hover:-translate-y-1"
+              className="px-8 py-4 border-2 border-white text-white font-semibold uppercase text-sm hover:bg-white hover:text-gray-900 transition-all duration-300 rounded-md"
             >
-              <span className="relative z-10 flex items-center gap-2">
-                Iniciar Proyecto
-                <IconArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </span>
-              <div className="absolute inset-0 bg-gradient-to-r from-secondary to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              Contáctanos
             </Link>
             <Link
-              href="#portafolio"
-              className="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/10 backdrop-blur-md text-white font-semibold rounded-xl border border-white/30 hover:bg-white/20 hover:border-white/50 transition-all duration-300 hover:-translate-y-1"
+              href="#servicios"
+              className="px-8 py-4 bg-primary text-white font-semibold uppercase text-sm hover:bg-secondary transition-all duration-300 rounded-md inline-flex items-center gap-2 group"
             >
-              Ver Portafolio
-              <span className="w-2 h-2 bg-primary rounded-full group-hover:animate-ping" />
+              Nuestros Servicios
+              <IconArrowRight
+                size={18}
+                className="group-hover:translate-x-1 transition-transform"
+              />
             </Link>
           </div>
+        </div>
+      </div>
 
-          {/* Stats */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto">
-            {stats.map(({ value, label }, index) => (
-              <div
-                key={index}
-                className="relative group text-center p-6 bg-white/5 backdrop-blur-md rounded-2xl border border-white/10 hover:border-white/30 hover:bg-white/10 transition-all duration-300"
-              >
-                <div className="relative">
-                  <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-cyan-400 to-primary bg-clip-text text-transparent mb-2">
-                    {value}
-                  </div>
-                  <div className="text-sm text-gray-300 font-medium">
-                    {label}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Tech Stack Banner */}
-          <div className="mt-16 pt-12 border-t border-white/10">
-            <p className="text-center text-sm text-gray-400 mb-6 uppercase tracking-wider font-medium">
-              Tecnologías que dominamos
-            </p>
-            <div className="flex flex-wrap justify-center gap-8 items-center">
-              {techIcons.map(({ Icon, color, name }) => (
-                <div
-                  key={name}
-                  className="group flex flex-col items-center gap-2"
+      {/* Service Cards - Bottom */}
+      <div className="absolute bottom-0 left-0 right-0 z-10 pb-8 hidden md:block">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Card 1 - Orange */}
+            <div className="bg-primary p-8 rounded-2xl transform hover:-translate-y-2 transition-all duration-300 shadow-2xl">
+              <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mb-4">
+                <svg
+                  className="w-6 h-6 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
                 >
-                  <Icon
-                    className={`w-8 h-8 ${color} opacity-60 group-hover:opacity-100 transition-opacity`}
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M13 10V3L4 14h7v7l9-11h-7z"
                   />
-                  <span className="text-xs text-gray-500 group-hover:text-gray-300 transition-colors">
-                    {name}
-                  </span>
-                </div>
-              ))}
+                </svg>
+              </div>
+              <h3 className="text-white font-bold text-xl mb-2">
+                Desarrollo Web
+              </h3>
+              <p className="text-white/80 text-sm">
+                Aplicaciones web modernas y escalables con las últimas
+                tecnologías
+              </p>
+            </div>
+
+            {/* Card 2 - Light Gray */}
+            <div className="bg-gray-100 dark:bg-gray-800 p-8 rounded-2xl transform hover:-translate-y-2 transition-all duration-300 shadow-2xl">
+              <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center mb-4">
+                <svg
+                  className="w-6 h-6 text-primary"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                  />
+                </svg>
+              </div>
+              <h3 className="text-gray-900 dark:text-white font-bold text-xl mb-2">
+                Consultoría Tech
+              </h3>
+              <p className="text-gray-600 dark:text-gray-400 text-sm">
+                Asesoramiento estratégico para transformación digital exitosa
+              </p>
+            </div>
+
+            {/* Card 3 - Dark Gray */}
+            <div className="bg-gray-800 p-8 rounded-2xl transform hover:-translate-y-2 transition-all duration-300 shadow-2xl">
+              <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center mb-4">
+                <svg
+                  className="w-6 h-6 text-primary"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
+                  />
+                </svg>
+              </div>
+              <h3 className="text-white font-bold text-xl mb-2">
+                UX/UI Design
+              </h3>
+              <p className="text-white/80 text-sm">
+                Interfaces intuitivas y atractivas que mejoran la experiencia
+              </p>
             </div>
           </div>
         </div>
       </div>
 
       {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10">
-        <span className="text-xs text-gray-400 uppercase tracking-widest">
-          Scroll
-        </span>
+      <div className="absolute bottom-32 md:bottom-8 left-1/2 -translate-x-1/2 animate-bounce z-10">
         <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center pt-2">
-          <div className="w-1.5 h-3 bg-primary rounded-full animate-bounce" />
+          <div className="w-1.5 h-3 bg-white rounded-full animate-pulse" />
         </div>
       </div>
     </section>
