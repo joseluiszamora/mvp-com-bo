@@ -2,62 +2,36 @@
 
 import Link from "next/link";
 import {
-  IconBrandLinkedin,
-  IconBrandGithub,
-  IconBrandTwitter,
-  IconBrandInstagram,
-  IconMail,
-  IconPhone,
-  IconMapPin,
   IconArrowUp,
+  IconBrandGithub,
+  IconBrandInstagram,
+  IconBrandLinkedin,
+  IconBrandWhatsapp,
+  IconMail,
+  IconMapPin,
+  IconPhone,
   IconSend,
 } from "@tabler/icons-react";
 
 const footerLinks = {
   servicios: [
-    { label: "Desarrollo Web", href: "#servicios" },
-    { label: "Apps Móviles", href: "#servicios" },
+    { label: "Aplicaciones web", href: "#servicios" },
+    { label: "Apps móviles", href: "#servicios" },
     { label: "Cloud & DevOps", href: "#servicios" },
     { label: "Diseño UI/UX", href: "#servicios" },
   ],
   empresa: [
-    { label: "Sobre Nosotros", href: "#" },
+    { label: "Inicio", href: "#inicio" },
     { label: "Portafolio", href: "#portafolio" },
     { label: "Testimonios", href: "#testimonios" },
-    { label: "Blog", href: "#" },
-  ],
-  legal: [
-    { label: "Política de Privacidad", href: "#" },
-    { label: "Términos de Servicio", href: "#" },
-    { label: "Cookies", href: "#" },
+    { label: "Contacto", href: "#contacto" },
   ],
 };
 
 const socialLinks = [
-  {
-    icon: IconBrandLinkedin,
-    href: "#",
-    label: "LinkedIn",
-    color: "hover:bg-blue-600",
-  },
-  {
-    icon: IconBrandGithub,
-    href: "#",
-    label: "GitHub",
-    color: "hover:bg-gray-700",
-  },
-  {
-    icon: IconBrandTwitter,
-    href: "#",
-    label: "Twitter",
-    color: "hover:bg-sky-500",
-  },
-  {
-    icon: IconBrandInstagram,
-    href: "#",
-    label: "Instagram",
-    color: "hover:bg-pink-600",
-  },
+  { icon: IconBrandLinkedin, href: "#", label: "LinkedIn" },
+  { icon: IconBrandGithub, href: "#", label: "GitHub" },
+  { icon: IconBrandInstagram, href: "#", label: "Instagram" },
 ];
 
 export default function Footer() {
@@ -66,108 +40,81 @@ export default function Footer() {
   };
 
   return (
-    <footer
-      id="contacto"
-      className="relative bg-gray-50 dark:bg-gray-900 overflow-hidden transition-colors duration-300"
-    >
-      {/* Background Decorations */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary/10 dark:bg-primary/5 rounded-full blur-3xl" />
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-secondary/10 dark:bg-secondary/5 rounded-full blur-3xl" />
-      </div>
-
-      {/* Top Gradient Line */}
-      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-secondary to-accent" />
-
-      <div className="container-custom relative z-10">
-        {/* CTA Section */}
-        <div className="py-16 md:py-20">
-          <div className="max-w-4xl mx-auto text-center bg-gradient-to-br from-primary to-secondary rounded-3xl p-8 md:p-12 shadow-2xl shadow-primary/20">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
-              ¿Listo para Transformar tu Idea?
-            </h2>
-            <p className="text-white/80 text-lg mb-8 mx-auto">
-              Contáctanos hoy y convierte tu visión en un producto digital
-              exitoso.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="mailto:hola@mvp.dev"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-primary font-semibold rounded-xl hover:bg-gray-100 transition-all duration-300 hover:scale-105 hover:shadow-lg"
-              >
-                <IconSend className="w-5 h-5" />
-                Solicitar Cotización
+    <footer id="contacto" className="bg-gray-950 text-white">
+      <div className="border-b border-white/10 bg-primary">
+        <div className="container-custom py-12 md:py-16">
+          <div className="grid gap-8 lg:grid-cols-12 lg:items-center">
+            <div className="lg:col-span-7">
+              <p className="section-eyebrow text-white/80">Contacto</p>
+              <h2 className="mt-3 font-heading text-3xl font-bold leading-tight text-white md:text-5xl">
+                Hablemos de la próxima versión de tu negocio.
+              </h2>
+            </div>
+            <div className="flex flex-col gap-3 sm:flex-row lg:col-span-5 lg:justify-end">
+              <a href="mailto:hola@mvp.dev" className="btn-secondary">
+                <IconSend className="h-5 w-5" />
+                Solicitar cotización
               </a>
               <a
                 href="https://wa.me/59170000000"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-transparent border-2 border-white text-white font-semibold rounded-xl hover:bg-white hover:text-primary transition-all duration-300 hover:scale-105"
+                className="btn-secondary"
+                aria-label="Escribir por WhatsApp"
               >
+                <IconBrandWhatsapp className="h-5 w-5" />
                 WhatsApp
               </a>
             </div>
           </div>
         </div>
+      </div>
 
-        {/* Main Footer */}
-        <div className="py-12 border-t border-gray-200 dark:border-gray-800 grid md:grid-cols-2 lg:grid-cols-5 gap-10">
-          {/* Brand */}
+      <div className="container-custom">
+        <div className="grid gap-10 py-12 md:grid-cols-2 lg:grid-cols-4">
           <div className="lg:col-span-2">
             <Link
               href="/"
-              className="text-3xl font-bold font-montserrat inline-block mb-6 group"
+              className="font-heading text-3xl font-bold text-white"
             >
-              <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                MVP
-              </span>
-              <span className="text-gray-900 dark:text-white">.dev</span>
+              MVP.dev
             </Link>
-            <p className="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
-              Agencia de desarrollo de software especializada en crear productos
-              digitales innovadores que impulsan el crecimiento de tu negocio.
+            <p className="mt-5 max-w-xl leading-7 text-gray-300">
+              Agencia de desarrollo de software enfocada en productos digitales,
+              plataformas web y sistemas internos para empresas en crecimiento.
             </p>
 
-            {/* Contact Info */}
-            <div className="space-y-4">
+            <div className="mt-6 grid gap-3 text-gray-300">
               <a
                 href="mailto:hola@mvp.dev"
-                className="flex items-center gap-3 text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors group"
+                className="flex items-center gap-3 transition hover:text-white"
               >
-                <span className="p-2 bg-primary/10 dark:bg-primary/20 rounded-lg group-hover:bg-primary group-hover:text-white transition-colors">
-                  <IconMail className="w-5 h-5" />
-                </span>
+                <IconMail className="h-5 w-5 text-accent" />
                 hola@mvp.dev
               </a>
               <a
                 href="tel:+59170000000"
-                className="flex items-center gap-3 text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors group"
+                className="flex items-center gap-3 transition hover:text-white"
               >
-                <span className="p-2 bg-primary/10 dark:bg-primary/20 rounded-lg group-hover:bg-primary group-hover:text-white transition-colors">
-                  <IconPhone className="w-5 h-5" />
-                </span>
+                <IconPhone className="h-5 w-5 text-accent" />
                 +591 70000000
               </a>
-              <div className="flex items-center gap-3 text-gray-600 dark:text-gray-400">
-                <span className="p-2 bg-primary/10 dark:bg-primary/20 rounded-lg">
-                  <IconMapPin className="w-5 h-5" />
-                </span>
+              <span className="flex items-center gap-3">
+                <IconMapPin className="h-5 w-5 text-accent" />
                 La Paz, Bolivia
-              </div>
+              </span>
             </div>
           </div>
 
-          {/* Links - Servicios */}
           <div>
-            <h4 className="font-semibold text-gray-900 dark:text-white mb-6 text-lg">
+            <h3 className="font-heading text-lg font-bold text-white">
               Servicios
-            </h4>
-            <ul className="space-y-3">
-              {footerLinks.servicios.map((link, index) => (
-                <li key={index}>
+            </h3>
+            <ul className="mt-5 grid gap-3">
+              {footerLinks.servicios.map((link) => (
+                <li key={link.label}>
                   <a
                     href={link.href}
-                    className="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors inline-flex items-center gap-2 group"
+                    className="text-gray-300 transition hover:text-white"
                   >
-                    <span className="w-1.5 h-1.5 bg-gray-400 dark:bg-gray-600 rounded-full group-hover:bg-primary transition-colors" />
                     {link.label}
                   </a>
                 </li>
@@ -175,39 +122,17 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Links - Empresa */}
           <div>
-            <h4 className="font-semibold text-gray-900 dark:text-white mb-6 text-lg">
+            <h3 className="font-heading text-lg font-bold text-white">
               Empresa
-            </h4>
-            <ul className="space-y-3">
-              {footerLinks.empresa.map((link, index) => (
-                <li key={index}>
+            </h3>
+            <ul className="mt-5 grid gap-3">
+              {footerLinks.empresa.map((link) => (
+                <li key={link.label}>
                   <a
                     href={link.href}
-                    className="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors inline-flex items-center gap-2 group"
+                    className="text-gray-300 transition hover:text-white"
                   >
-                    <span className="w-1.5 h-1.5 bg-gray-400 dark:bg-gray-600 rounded-full group-hover:bg-primary transition-colors" />
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Links - Legal */}
-          <div>
-            <h4 className="font-semibold text-gray-900 dark:text-white mb-6 text-lg">
-              Legal
-            </h4>
-            <ul className="space-y-3">
-              {footerLinks.legal.map((link, index) => (
-                <li key={index}>
-                  <a
-                    href={link.href}
-                    className="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors inline-flex items-center gap-2 group"
-                  >
-                    <span className="w-1.5 h-1.5 bg-gray-400 dark:bg-gray-600 rounded-full group-hover:bg-primary transition-colors" />
                     {link.label}
                   </a>
                 </li>
@@ -216,34 +141,31 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="py-6 border-t border-gray-200 dark:border-gray-800 flex flex-col md:flex-row items-center justify-between gap-6">
-          <p className="text-gray-500 dark:text-gray-500 text-sm text-center md:text-left">
+        <div className="flex flex-col items-center justify-between gap-5 border-t border-white/10 py-6 md:flex-row">
+          <p className="text-sm text-gray-400">
             © {new Date().getFullYear()} MVP.dev. Todos los derechos reservados.
           </p>
 
-          {/* Social Links */}
           <div className="flex items-center gap-3">
-            {socialLinks.map((social, index) => (
+            {socialLinks.map((social) => (
               <a
-                key={index}
+                key={social.label}
                 href={social.href}
                 aria-label={social.label}
-                className={`p-2.5 bg-gray-200 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded-full ${social.color} hover:text-white transition-all duration-300 hover:scale-110`}
+                className="flex h-10 w-10 items-center justify-center rounded-md bg-white/10 text-gray-300 transition hover:bg-white hover:text-gray-950"
               >
-                <social.icon className="w-5 h-5" />
+                <social.icon className="h-5 w-5" />
               </a>
             ))}
+            <button
+              type="button"
+              onClick={scrollToTop}
+              className="flex h-10 w-10 items-center justify-center rounded-md bg-accent text-gray-950 transition hover:bg-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-950"
+              aria-label="Volver arriba"
+            >
+              <IconArrowUp className="h-5 w-5" />
+            </button>
           </div>
-
-          {/* Scroll to Top */}
-          <button
-            onClick={scrollToTop}
-            className="p-3 bg-primary text-white rounded-full hover:bg-secondary hover:scale-110 transition-all duration-300 shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-secondary/30"
-            aria-label="Volver arriba"
-          >
-            <IconArrowUp className="w-5 h-5" />
-          </button>
         </div>
       </div>
     </footer>

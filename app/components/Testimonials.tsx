@@ -1,31 +1,26 @@
-"use client";
-
-import { IconStarFilled, IconQuote } from "@tabler/icons-react";
+import { IconQuote, IconStarFilled } from "@tabler/icons-react";
 
 const testimonials = [
   {
     name: "María González",
     role: "CEO, TechStart Bolivia",
-    image: "https://randomuser.me/api/portraits/women/44.jpg",
+    initials: "MG",
     content:
-      "MVP transformó nuestra idea en una plataforma robusta en tiempo récord. Su equipo es profesional, comunicativo y entrega resultados excepcionales.",
-    rating: 5,
+      "MVP entendió el problema de negocio antes de escribir código. El resultado fue una plataforma clara, estable y fácil de presentar a clientes.",
   },
   {
     name: "Carlos Mendoza",
     role: "Fundador, EcoMarket",
-    image: "https://randomuser.me/api/portraits/men/32.jpg",
+    initials: "CM",
     content:
-      "Trabajar con MVP fue una experiencia increíble. Entendieron nuestra visión desde el primer día y la ejecutaron perfectamente. 100% recomendados.",
-    rating: 5,
+      "El proceso fue ordenado y transparente. Nos ayudaron a lanzar un MVP medible sin perder tiempo en funcionalidades que todavía no necesitábamos.",
   },
   {
-    name: "Ana Lucia Paredes",
+    name: "Ana Lucía Paredes",
     role: "Directora de Innovación, FinanceApp",
-    image: "https://randomuser.me/api/portraits/women/68.jpg",
+    initials: "AP",
     content:
-      "La calidad del código y la atención al detalle de MVP es impresionante. Nuestro MVP se convirtió en un producto exitoso gracias a su expertise.",
-    rating: 5,
+      "La calidad de la interfaz y la arquitectura nos permitió crecer el producto con seguridad después del primer lanzamiento.",
   },
 ];
 
@@ -33,70 +28,50 @@ export default function Testimonials() {
   return (
     <section
       id="testimonios"
-      className="section-padding bg-gray-50 dark:bg-gray-900 transition-colors duration-300"
+      className="section-padding bg-light dark:bg-gray-950 transition-colors duration-300"
     >
       <div className="container-custom">
-        {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="inline-block px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary rounded-full text-sm font-semibold mb-4">
-            Testimonios
-          </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-            Lo Que Dicen Nuestros{" "}
-            <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-              Clientes
-            </span>
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="section-eyebrow text-primary">Testimonios</p>
+          <h2 className="section-title mt-3">
+            Equipos que valoran claridad técnica y ejecución responsable.
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-400">
-            Historias de éxito de empresas que confiaron en nosotros para
-            transformar sus ideas en realidad.
+          <p className="section-copy mt-5">
+            Nos involucramos como socio técnico: escuchamos, priorizamos y
+            convertimos decisiones complejas en avances concretos.
           </p>
         </div>
 
-        {/* Testimonials Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => (
-            <div
-              key={index}
-              className="group relative bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-2xl hover:shadow-gray-200/50 dark:hover:shadow-black/20 transition-all duration-500 hover:-translate-y-2 border border-gray-100 dark:border-gray-700"
+        <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {testimonials.map((testimonial) => (
+            <article
+              key={testimonial.name}
+              className="surface-card relative p-6 transition duration-300 hover:-translate-y-1 hover:shadow-lg"
             >
-              {/* Quote Icon */}
-              <div className="absolute -top-4 -right-4 w-12 h-12 bg-primary rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                <IconQuote className="w-6 h-6 text-white" />
-              </div>
-
-              {/* Stars */}
-              <div className="flex gap-1 mb-4">
-                {[...Array(testimonial.rating)].map((_, i) => (
-                  <IconStarFilled key={i} className="w-5 h-5 text-amber-400" />
+              <IconQuote className="h-8 w-8 text-primary" />
+              <div className="mt-5 flex gap-1" aria-label="Calificación 5 de 5">
+                {[1, 2, 3, 4, 5].map((star) => (
+                  <IconStarFilled key={star} className="h-4 w-4 text-accent" />
                 ))}
               </div>
-
-              {/* Content */}
-              <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed italic">
+              <p className="mt-5 leading-7 text-gray-700 dark:text-gray-300">
                 &ldquo;{testimonial.content}&rdquo;
               </p>
 
-              {/* Author */}
-              <div className="flex items-center gap-4">
-                <img
-                  src={testimonial.image}
-                  alt={testimonial.name}
-                  className="w-14 h-14 rounded-full object-cover ring-2 ring-primary/20"
-                />
+              <div className="mt-7 flex items-center gap-4">
+                <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary text-sm font-bold text-white">
+                  {testimonial.initials}
+                </div>
                 <div>
-                  <h4 className="font-semibold text-gray-900 dark:text-white">
+                  <h3 className="font-heading text-base font-bold text-gray-950 dark:text-white">
                     {testimonial.name}
-                  </h4>
+                  </h3>
                   <p className="text-sm text-gray-500 dark:text-gray-400">
                     {testimonial.role}
                   </p>
                 </div>
               </div>
-
-              {/* Hover Gradient */}
-              <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/5 to-secondary/5 dark:from-primary/10 dark:to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
-            </div>
+            </article>
           ))}
         </div>
       </div>

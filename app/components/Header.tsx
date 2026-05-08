@@ -30,47 +30,37 @@ export default function Header() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-white/95 dark:bg-gray-950/95 backdrop-blur-md shadow-lg dark:shadow-black/20 py-3"
-          : "bg-transparent dark:bg-gray-950/80 dark:backdrop-blur-sm py-4"
+          ? "bg-white/90 dark:bg-gray-950/90 backdrop-blur-md shadow-md py-3"
+          : "bg-white/75 dark:bg-gray-950/70 backdrop-blur-sm py-4"
       }`}
     >
       <div className="container-custom">
         <nav className="flex items-center justify-between">
-          {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="relative w-10 h-10 flex-shrink-0">
-              <Image
-                src="/icon.png"
-                alt="MVP Logo"
-                width={40}
-                height={40}
-                className="object-contain transition-transform duration-300 group-hover:scale-110"
-                priority
-              />
-            </div>
-            <div className="text-2xl font-bold font-montserrat tracking-tight">
-              <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent group-hover:from-secondary group-hover:to-primary transition-all duration-500">
-                MVP
-              </span>
-              <span className="text-gray-900 dark:text-white">.dev</span>
-            </div>
+            <Image
+              src="/icon.png"
+              alt="MVP.dev"
+              width={120}
+              height={32}
+              className="h-8 w-auto object-contain"
+              priority
+            />
+            <span className="sr-only">MVP.dev</span>
           </Link>
 
-          {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary font-medium transition-colors relative group py-2"
+                className="text-sm font-semibold text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors relative group py-2"
               >
                 {link.label}
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-secondary transition-all duration-300 group-hover:w-full" />
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full" />
               </Link>
             ))}
           </div>
 
-          {/* Desktop CTA + Theme Toggle */}
           <div className="hidden lg:flex items-center gap-4">
             <ThemeToggle />
             <Link href="#contacto" className="btn-primary">
@@ -82,9 +72,11 @@ export default function Header() {
           <div className="flex items-center gap-3 lg:hidden">
             <ThemeToggle />
             <button
+              type="button"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="p-2 text-gray-700 dark:text-gray-300 hover:text-primary transition-colors"
-              aria-label="Toggle menu"
+              className="p-2 text-gray-700 dark:text-gray-300 hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-gray-950 rounded-md"
+              aria-label={isMenuOpen ? "Cerrar menú" : "Abrir menú"}
+              aria-expanded={isMenuOpen}
             >
               {isMenuOpen ? (
                 <IconX className="w-6 h-6" />
@@ -98,16 +90,16 @@ export default function Header() {
         {/* Mobile Menu */}
         <div
           className={`lg:hidden overflow-hidden transition-all duration-300 ${
-            isMenuOpen ? "max-h-[400px] mt-4" : "max-h-0"
+            isMenuOpen ? "max-h-96 mt-4" : "max-h-0"
           }`}
         >
-          <div className="flex flex-col gap-2 bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-xl border border-gray-100 dark:border-gray-800">
+          <div className="flex flex-col gap-2 bg-white dark:bg-gray-900 rounded-lg p-4 shadow-lg border border-gray-100 dark:border-gray-800">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setIsMenuOpen(false)}
-                className="text-gray-700 dark:text-gray-300 hover:text-primary hover:bg-primary/5 dark:hover:bg-primary/10 font-medium transition-all py-3 px-4 rounded-lg"
+                className="text-gray-700 dark:text-gray-300 hover:text-primary hover:bg-primary/5 dark:hover:bg-primary/10 font-semibold transition-all py-3 px-4 rounded-md"
               >
                 {link.label}
               </Link>

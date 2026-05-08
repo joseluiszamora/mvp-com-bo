@@ -1,45 +1,43 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
-import { IconSun, IconMoon } from "@tabler/icons-react";
+import { useCallback, useSyncExternalStore } from "react";
+import { IconMoon, IconSun } from "@tabler/icons-react";
+
+type Theme = "light" | "dark";
+
+const getTheme = (): Theme => {
+  if (typeof document === "undefined") {
+    return "light";
+  }
+
+  return document.documentElement.classList.contains("dark") ? "dark" : "light";
+};
+
+const getServerTheme = (): Theme => "light";
+
+const subscribeToTheme = (callback: () => void) => {
+  window.addEventListener("storage", callback);
+  window.addEventListener("themechange", callback);
+
+  return () => {
+    window.removeEventListener("storage", callback);
+    window.removeEventListener("themechange", callback);
+  };
+};
 
 export default function ThemeToggle() {
-  const [theme, setTheme] = useState<"light" | "dark">("light");
-  const [isMounted, setIsMounted] = useState(false);
-
-  // Initialize theme on mount
-  useEffect(() => {
-    const storedTheme = localStorage.getItem("theme") as
-      | "light"
-      | "dark"
-      | null;
-    const systemPrefersDark = window.matchMedia(
-      "(prefers-color-scheme: dark)"
-    ).matches;
-
-    const initialTheme = storedTheme || (systemPrefersDark ? "dark" : "light");
-    setTheme(initialTheme);
-    setIsMounted(true);
-  }, []);
+  const theme = useSyncExternalStore(
+    subscribeToTheme,
+    getTheme,
+    getServerTheme
+  );
 
   const handleToggle = useCallback(() => {
     const newTheme = theme === "dark" ? "light" : "dark";
-    setTheme(newTheme);
     localStorage.setItem("theme", newTheme);
-
-    if (newTheme === "dark") {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
+    document.documentElement.classList.toggle("dark", newTheme === "dark");
+    window.dispatchEvent(new Event("themechange"));
   }, [theme]);
-
-  // Show placeholder while mounting to avoid hydration mismatch
-  if (!isMounted) {
-    return (
-      <div className="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 animate-pulse" />
-    );
-  }
 
   const isDark = theme === "dark";
 
@@ -47,13 +45,13 @@ export default function ThemeToggle() {
     <button
       type="button"
       onClick={handleToggle}
-      className="relative p-2.5 rounded-full bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+      className="flex h-10 w-10 items-center justify-center rounded-md bg-gray-100 text-gray-700 transition hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700 dark:focus:ring-offset-gray-950"
       aria-label={isDark ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}
     >
       {isDark ? (
-        <IconSun className="w-5 h-5 text-yellow-400" strokeWidth={2} />
+        <IconSun className="h-5 w-5 text-accent" strokeWidth={2} />
       ) : (
-        <IconMoon className="w-5 h-5 text-indigo-600" strokeWidth={2} />
+        <IconMoon className="h-5 w-5 text-primary" strokeWidth={2} />
       )}
     </button>
   );

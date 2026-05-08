@@ -1,47 +1,31 @@
-"use client";
-
-import { IconExternalLink, IconBrandGithub } from "@tabler/icons-react";
+import Image from "next/image";
+import Link from "next/link";
+import { IconArrowRight, IconExternalLink } from "@tabler/icons-react";
 
 const projects = [
   {
-    title: "EcoMarket App",
-    category: "E-commerce",
+    title: "Plataforma comercial B2B",
+    category: "SaaS",
     description:
-      "Marketplace para productos ecológicos con sistema de pagos integrado y logística de envíos.",
-    image:
-      "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop",
-    technologies: ["Next.js", "Stripe", "PostgreSQL"],
-    color: "from-green-500 to-emerald-500",
+      "CRM operativo con pipeline de ventas, reportes y automatización para equipos comerciales distribuidos.",
+    image: "/images/design.png",
+    technologies: ["Next.js", "TypeScript", "PostgreSQL"],
   },
   {
-    title: "FinTrack Dashboard",
+    title: "Dashboard financiero",
     category: "Fintech",
     description:
-      "Panel de control financiero con análisis en tiempo real, reportes automáticos y alertas inteligentes.",
-    image:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop",
-    technologies: ["React", "Node.js", "MongoDB"],
-    color: "from-primary to-secondary",
+      "Panel ejecutivo con métricas de liquidez, conciliación y alertas para toma de decisiones en tiempo real.",
+    image: "/images/12690.jpg",
+    technologies: ["React", "Node.js", "Cloud"],
   },
   {
-    title: "HealthConnect",
-    category: "Healthcare",
+    title: "Sistema interno de operaciones",
+    category: "Operaciones",
     description:
-      "Plataforma de telemedicina con videollamadas, historial clínico y agendamiento de citas.",
-    image:
-      "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&h=400&fit=crop",
-    technologies: ["React Native", "Firebase", "WebRTC"],
-    color: "from-purple-500 to-pink-500",
-  },
-  {
-    title: "LogiTrack Pro",
-    category: "Logística",
-    description:
-      "Sistema de gestión logística con tracking en tiempo real, optimización de rutas y reportes.",
-    image:
-      "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=400&fit=crop",
-    technologies: ["Vue.js", "Python", "AWS"],
-    color: "from-primary via-accent to-secondary",
+      "Aplicación web para controlar órdenes, responsables, estados y trazabilidad desde una única interfaz.",
+    image: "/images/3138862.jpg",
+    technologies: ["Next.js", "API", "DevOps"],
   },
 ];
 
@@ -49,134 +33,79 @@ export default function Portfolio() {
   return (
     <section
       id="portafolio"
-      className="section-padding bg-white dark:bg-gray-950 relative overflow-hidden transition-colors duration-300"
+      className="section-padding relative overflow-hidden bg-white dark:bg-gray-900 transition-colors duration-300"
     >
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-30 dark:opacity-20">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `linear-gradient(90deg, #e5e7eb 1px, transparent 1px),
-              linear-gradient(#e5e7eb 1px, transparent 1px)`,
-            backgroundSize: "60px 60px",
-          }}
-        />
-      </div>
-      <div
-        className="dark:hidden absolute inset-0"
-        style={{
-          backgroundImage: `linear-gradient(90deg, #e5e7eb 1px, transparent 1px),
-          linear-gradient(#e5e7eb 1px, transparent 1px)`,
-          backgroundSize: "60px 60px",
-          opacity: 0.3,
-        }}
-      />
-      <div
-        className="hidden dark:block absolute inset-0"
-        style={{
-          backgroundImage: `linear-gradient(90deg, #1f2937 1px, transparent 1px),
-          linear-gradient(#1f2937 1px, transparent 1px)`,
-          backgroundSize: "60px 60px",
-          opacity: 0.3,
-        }}
-      />
+      <div className="absolute inset-0 bg-grid-soft opacity-70" />
 
       <div className="container-custom relative z-10">
-        {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="inline-block px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary rounded-full text-sm font-semibold mb-4">
-            Portafolio
-          </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-            Proyectos que{" "}
-            <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-              Inspiran
-            </span>
-          </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-400">
-            Conoce algunos de los proyectos exitosos que hemos desarrollado para
-            nuestros clientes.
+        <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
+          <div className="lg:col-span-7">
+            <p className="section-eyebrow text-primary">Portafolio</p>
+            <h2 className="section-title mt-3">
+              Casos de trabajo con intención, métricas y una base técnica seria.
+            </h2>
+          </div>
+          <p className="section-copy lg:col-span-5">
+            Estos ejemplos muestran el tipo de producto que construimos:
+            interfaces enfocadas, integraciones útiles y entregables listos para
+            operar.
           </p>
         </div>
 
-        {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 gap-8">
-          {projects.map((project, index) => (
-            <div
-              key={index}
-              className="group relative bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-gray-200/50 dark:hover:shadow-black/30 transition-all duration-500 border border-gray-100 dark:border-gray-800"
+        <div className="mt-12 grid gap-6 lg:grid-cols-3">
+          {projects.map((project) => (
+            <article
+              key={project.title}
+              className="surface-card group overflow-hidden transition duration-300 hover:-translate-y-1 hover:shadow-lg"
             >
-              {/* Image */}
-              <div className="relative h-64 overflow-hidden">
-                <img
+              <div className="relative h-56 overflow-hidden bg-gray-900">
+                <Image
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  fill
+                  className="object-cover transition duration-500 group-hover:scale-105"
+                  sizes="(min-width: 1024px) 33vw, 100vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-
-                {/* Category Badge */}
-                <div
-                  className={`absolute top-4 left-4 px-3 py-1 bg-gradient-to-r ${project.color} rounded-full`}
-                >
-                  <span className="text-white text-sm font-medium">
-                    {project.category}
-                  </span>
-                </div>
-
-                {/* Hover Overlay */}
-                <div className="absolute inset-0 bg-primary/90 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <a
-                    href="#"
-                    className="p-3 bg-white rounded-full hover:scale-110 transition-transform"
-                    aria-label="Ver proyecto"
-                  >
-                    <IconExternalLink className="w-6 h-6 text-primary" />
-                  </a>
-                  <a
-                    href="#"
-                    className="p-3 bg-white rounded-full hover:scale-110 transition-transform"
-                    aria-label="Ver código"
-                  >
-                    <IconBrandGithub className="w-6 h-6 text-primary" />
-                  </a>
-                </div>
+                <div className="absolute inset-0 bg-gray-950/35" />
+                <span className="absolute left-4 top-4 rounded-md bg-white px-3 py-1 text-xs font-bold text-primary shadow-sm">
+                  {project.category}
+                </span>
               </div>
 
-              {/* Content */}
               <div className="p-6">
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2 group-hover:text-primary transition-colors">
+                <h3 className="font-heading text-xl font-bold text-gray-950 dark:text-white">
                   {project.title}
                 </h3>
-                <p className="text-gray-600 dark:text-gray-400 mb-4 line-clamp-2">
+                <p className="mt-3 line-clamp-2 text-sm leading-7 text-gray-600 dark:text-gray-300">
                   {project.description}
                 </p>
-
-                {/* Technologies */}
-                <div className="flex flex-wrap gap-2">
-                  {project.technologies.map((tech, techIndex) => (
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {project.technologies.map((tech) => (
                     <span
-                      key={techIndex}
-                      className="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-sm text-gray-600 dark:text-gray-400 rounded-full"
+                      key={tech}
+                      className="rounded-md bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-700 dark:bg-gray-800 dark:text-gray-300"
                     >
                       {tech}
                     </span>
                   ))}
                 </div>
+                <Link
+                  href="#contacto"
+                  className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-primary transition hover:text-secondary"
+                >
+                  Conversar sobre un caso similar
+                  <IconArrowRight className="h-4 w-4" />
+                </Link>
               </div>
-            </div>
+            </article>
           ))}
         </div>
 
-        {/* CTA */}
-        <div className="text-center mt-12">
-          <a
-            href="#contacto"
-            className="btn-primary inline-flex items-center gap-2"
-          >
-            Ver Todos los Proyectos
-            <IconExternalLink className="w-5 h-5" />
-          </a>
+        <div className="mt-12 flex justify-center">
+          <Link href="#contacto" className="btn-primary">
+            Iniciar diagnóstico
+            <IconExternalLink className="h-5 w-5" />
+          </Link>
         </div>
       </div>
     </section>

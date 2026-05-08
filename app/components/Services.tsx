@@ -1,129 +1,103 @@
-"use client";
-
 import {
+  IconBrandFigma,
+  IconCloud,
   IconDeviceLaptop,
   IconDeviceMobile,
-  IconCloud,
-  IconBrandFigma,
-  IconRocket,
   IconHeadset,
-  IconArrowRight,
+  IconRocket,
 } from "@tabler/icons-react";
 
 const services = [
   {
     icon: IconDeviceLaptop,
-    title: "Desarrollo Web",
+    title: "Aplicaciones web",
     description:
-      "Aplicaciones web modernas, rápidas y escalables con las últimas tecnologías como React, Next.js y Node.js.",
-    color: "from-primary to-secondary",
-    iconColor: "text-primary",
+      "Frontends rápidos, dashboards operativos y plataformas SaaS construidas con arquitectura mantenible.",
   },
   {
     icon: IconDeviceMobile,
-    title: "Apps Móviles",
+    title: "Apps móviles",
     description:
-      "Aplicaciones nativas y multiplataforma para iOS y Android con React Native y Flutter.",
-    color: "from-purple-500 to-pink-500",
-    iconColor: "text-purple-500",
+      "Experiencias iOS y Android para validar, operar o escalar canales digitales con una base compartida.",
   },
   {
     icon: IconCloud,
     title: "Cloud & DevOps",
     description:
-      "Infraestructura en la nube, CI/CD, y optimización de rendimiento con AWS, GCP y Azure.",
-    color: "from-blue-500 to-cyan-500",
-    iconColor: "text-blue-500",
+      "Despliegues, observabilidad, automatización y entornos listos para crecer sin sorpresas.",
   },
   {
     icon: IconBrandFigma,
     title: "Diseño UI/UX",
     description:
-      "Interfaces intuitivas y experiencias de usuario excepcionales que convierten visitantes en clientes.",
-    color: "from-green-500 to-emerald-500",
-    iconColor: "text-green-500",
+      "Flujos, prototipos y sistemas visuales que reducen fricción y hacen más fácil vender o operar.",
   },
   {
     icon: IconRocket,
-    title: "MVP & Startups",
+    title: "MVP & validación",
     description:
-      "Desarrollo rápido de prototipos y productos mínimos viables para validar tu idea de negocio.",
-    color: "from-primary via-secondary to-accent",
-    iconColor: "text-secondary",
+      "Construcción enfocada para probar hipótesis reales antes de invertir en una plataforma completa.",
   },
   {
     icon: IconHeadset,
-    title: "Soporte & Mantenimiento",
+    title: "Soporte evolutivo",
     description:
-      "Mantenimiento continuo, actualizaciones y soporte técnico 24/7 para tu tranquilidad.",
-    color: "from-teal-500 to-cyan-500",
-    iconColor: "text-teal-500",
+      "Mantenimiento, mejoras incrementales y acompañamiento técnico para productos en producción.",
   },
 ];
+
+const processSteps = ["Descubrimiento", "Diseño", "Desarrollo", "Lanzamiento"];
 
 export default function Services() {
   return (
     <section
       id="servicios"
-      className="section-padding bg-gray-50 dark:bg-gray-900 relative overflow-hidden transition-colors duration-300"
+      className="section-padding bg-light dark:bg-gray-950 transition-colors duration-300"
     >
-      {/* Background Decoration */}
-      <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-gradient-to-bl from-primary/5 dark:from-primary/10 to-transparent rounded-bl-full" />
-      <div className="absolute bottom-0 left-0 w-1/3 h-1/3 bg-gradient-to-tr from-secondary/5 dark:from-secondary/10 to-transparent rounded-tr-full" />
-
-      <div className="container-custom relative z-10">
-        {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="inline-block px-4 py-2 bg-primary/10 dark:bg-primary/20 text-primary rounded-full text-sm font-semibold mb-4">
-            Nuestros Servicios
-          </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-            Soluciones Tecnológicas{" "}
-            <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-              Integrales
-            </span>
-          </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-400">
-            Ofrecemos servicios completos de desarrollo de software para llevar
-            tu negocio al siguiente nivel digital.
+      <div className="container-custom">
+        <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
+          <div className="lg:col-span-7">
+            <p className="section-eyebrow text-primary">Servicios</p>
+            <h2 className="section-title mt-3">
+              Tecnología pensada para negocio, operación y producto.
+            </h2>
+          </div>
+          <p className="section-copy lg:col-span-5">
+            Cubrimos el ciclo completo: desde aterrizar la idea y diseñar la
+            experiencia, hasta construir, desplegar y acompañar el crecimiento
+            del software.
           </p>
         </div>
 
-        {/* Services Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service, index) => (
-            <div
-              key={index}
-              className="group relative bg-white dark:bg-gray-800 rounded-2xl p-8 hover:shadow-2xl hover:shadow-gray-200/50 dark:hover:shadow-black/20 transition-all duration-500 hover:-translate-y-2 border border-gray-100 dark:border-gray-700 hover:border-primary/20 dark:hover:border-primary/30 overflow-hidden"
+        <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {services.map((service) => (
+            <article
+              key={service.title}
+              className="surface-card group p-6 transition duration-300 hover:-translate-y-1 hover:shadow-lg"
             >
-              {/* Gradient Background on Hover */}
-              <div
-                className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-5 dark:group-hover:opacity-10 transition-opacity duration-500`}
-              />
-
-              {/* Icon */}
-              <div
-                className={`inline-flex p-4 rounded-2xl bg-gradient-to-br ${service.color} mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300`}
-              >
-                <service.icon className="w-8 h-8 text-white" />
-              </div>
-
-              {/* Content */}
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4 group-hover:text-primary transition-colors">
+              <span className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary transition duration-300 group-hover:bg-primary group-hover:text-white">
+                <service.icon className="h-6 w-6" />
+              </span>
+              <h3 className="mt-5 font-heading text-xl font-bold text-gray-950 dark:text-white">
                 {service.title}
               </h3>
-              <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
+              <p className="mt-3 text-sm leading-7 text-gray-600 dark:text-gray-300">
                 {service.description}
               </p>
+            </article>
+          ))}
+        </div>
 
-              {/* Link */}
-              <a
-                href="#contacto"
-                className="inline-flex items-center gap-2 text-primary font-medium group-hover:gap-3 transition-all"
-              >
-                Saber más
-                <IconArrowRight className="w-4 h-4" />
-              </a>
+        <div className="mt-10 grid overflow-hidden rounded-lg border border-gray-200 bg-white text-sm font-semibold text-gray-700 shadow-sm dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300 md:grid-cols-4">
+          {processSteps.map((step, index) => (
+            <div
+              key={step}
+              className="flex items-center gap-3 border-b border-gray-200 px-5 py-4 dark:border-gray-800 md:border-b-0 md:border-r md:last:border-r-0"
+            >
+              <span className="font-heading text-lg font-bold text-accent">
+                0{index + 1}
+              </span>
+              {step}
             </div>
           ))}
         </div>

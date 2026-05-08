@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { Montserrat, Inter } from "next/font/google";
+import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 
-const montserrat = Montserrat({
-  variable: "--font-montserrat",
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
   subsets: ["latin"],
   weight: ["500", "600", "700"],
   display: "swap",
@@ -19,7 +19,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "MVP - Agencia de Desarrollo de Software",
   description:
-    "Transformamos tus ideas en productos digitales exitosos. Desarrollo de software a medida, aplicaciones web y móviles.",
+    "Desarrollamos software a medida, productos digitales y plataformas web para empresas que necesitan crecer con tecnología confiable.",
 };
 
 export default function RootLayout({
@@ -44,7 +44,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${montserrat.variable} ${inter.variable} antialiased`}>
+      <body className={`${spaceGrotesk.variable} ${inter.variable} antialiased`}>
         {children}
       </body>
     </html>

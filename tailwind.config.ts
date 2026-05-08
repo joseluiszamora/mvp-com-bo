@@ -11,14 +11,14 @@ const config: Config = {
     extend: {
       colors: {
         primary: "#4F46E5",
-        secondary: "#6366F1",
+        secondary: "#0F766E",
         accent: "#F59E0B",
         dark: "#111827",
         gray: "#6B7280",
-        light: "#F9FAFB",
+        light: "#F8FAFC",
       },
       fontFamily: {
-        montserrat: ["var(--font-montserrat)", "sans-serif"],
+        heading: ["var(--font-space-grotesk)", "sans-serif"],
         inter: ["var(--font-inter)", "sans-serif"],
       },
     },
