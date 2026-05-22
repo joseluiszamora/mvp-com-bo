@@ -25,6 +25,8 @@ const footerLinks = {
     { label: "Portafolio", href: "#portafolio" },
     { label: "Testimonios", href: "#testimonios" },
     { label: "Contacto", href: "#contacto" },
+    { label: "Política de privacidad", href: "/politica-de-privacidad" },
+    { label: "Términos y condiciones", href: "/terminos-y-condiciones" },
   ],
 };
 
@@ -129,12 +131,21 @@ export default function Footer() {
             <ul className="mt-5 grid gap-3">
               {footerLinks.empresa.map((link) => (
                 <li key={link.label}>
-                  <a
-                    href={link.href}
-                    className="text-gray-300 transition hover:text-white"
-                  >
-                    {link.label}
-                  </a>
+                  {link.href.startsWith("/") ? (
+                    <Link
+                      href={link.href}
+                      className="text-gray-300 transition hover:text-white"
+                    >
+                      {link.label}
+                    </Link>
+                  ) : (
+                    <a
+                      href={link.href}
+                      className="text-gray-300 transition hover:text-white"
+                    >
+                      {link.label}
+                    </a>
+                  )}
                 </li>
               ))}
             </ul>
