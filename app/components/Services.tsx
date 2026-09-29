@@ -1,105 +1,123 @@
-import {
-  IconBrandFigma,
-  IconCloud,
-  IconDeviceLaptop,
-  IconDeviceMobile,
-  IconHeadset,
-  IconRocket,
-} from "@tabler/icons-react";
+import Image from "next/image";
+import ActionLink from "./ActionLink";
+import SectionLabel from "./SectionLabel";
 
 const services = [
   {
-    icon: IconDeviceLaptop,
     title: "Aplicaciones web",
     description:
-      "Frontends rápidos, dashboards operativos y plataformas SaaS construidas con arquitectura mantenible.",
+      "Plataformas SaaS, tiendas y dashboards con una arquitectura clara y mantenible.",
   },
   {
-    icon: IconDeviceMobile,
     title: "Apps móviles",
     description:
-      "Experiencias iOS y Android para validar, operar o escalar canales digitales con una base compartida.",
+      "Experiencias iOS y Android para conectar tu negocio con las personas.",
   },
   {
-    icon: IconCloud,
-    title: "Cloud & DevOps",
-    description:
-      "Despliegues, observabilidad, automatización y entornos listos para crecer sin sorpresas.",
-  },
-  {
-    icon: IconBrandFigma,
     title: "Diseño UI/UX",
     description:
-      "Flujos, prototipos y sistemas visuales que reducen fricción y hacen más fácil vender o operar.",
+      "Investigación, prototipos e interfaces que hacen más fácil cada interacción.",
   },
   {
-    icon: IconRocket,
     title: "MVP & validación",
     description:
-      "Construcción enfocada para probar hipótesis reales antes de invertir en una plataforma completa.",
+      "Lo esencial para poner tu idea en manos de usuarios y aprender con datos reales.",
   },
   {
-    icon: IconHeadset,
+    title: "Cloud & DevOps",
+    description:
+      "Despliegues, automatización y observabilidad para acompañar tu crecimiento.",
+  },
+  {
     title: "Soporte evolutivo",
     description:
-      "Mantenimiento, mejoras incrementales y acompañamiento técnico para productos en producción.",
+      "Mantenimiento y mejoras continuas para productos que ya están en marcha.",
   },
 ];
-
-const processSteps = ["Descubrimiento", "Diseño", "Desarrollo", "Lanzamiento"];
+const imageRoot =
+  "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/";
 
 export default function Services() {
   return (
     <section
-      id="servicios"
-      className="section-padding bg-light dark:bg-gray-950 transition-colors duration-300"
+      id="estudio"
+      className="overflow-hidden bg-white py-16 sm:py-20 lg:py-28"
     >
-      <div className="container-custom">
-        <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
-          <div className="lg:col-span-7">
-            <p className="section-eyebrow text-primary">Servicios</p>
-            <h2 className="section-title mt-3">
-              Tecnología pensada para negocio, operación y producto.
-            </h2>
+      <div className="mx-auto max-w-studio px-5 sm:px-8 lg:px-12">
+        <SectionLabel number="1">Conoce a MVP</SectionLabel>
+        <h2 className="max-w-4xl font-sans text-editorial font-medium text-ink">
+          Estrategia, diseño y código.
+          <br />
+          Buenas ideas, mejor ejecutadas.
+        </h2>
+        <div className="mt-12 grid items-end gap-6 sm:grid-cols-2 lg:mt-24 lg:grid-cols-studio lg:gap-8">
+          <div className="relative order-2 aspect-studio overflow-hidden rounded-2xl bg-canvas lg:order-1">
+            <Image
+              src={`${imageRoot}hf_20260516_090123_74be96d4-9c1b-40cf-932a-96f4f4babed3.png`}
+              alt="Referencia visual de un espacio creativo de diseño"
+              fill
+              unoptimized
+              sizes="(min-width: 1024px) 26vw, (min-width: 640px) 50vw, 100vw"
+              className="object-cover"
+            />
           </div>
-          <p className="section-copy lg:col-span-5">
-            Cubrimos el ciclo completo: desde aterrizar la idea y diseñar la
-            experiencia, hasta construir, desplegar y acompañar el crecimiento
-            del software.
-          </p>
-        </div>
-
-        <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {services.map((service) => (
-            <article
-              key={service.title}
-              className="surface-card group p-6 transition duration-300 hover:-translate-y-1 hover:shadow-lg"
-            >
-              <span className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary transition duration-300 group-hover:bg-primary group-hover:text-white">
-                <service.icon className="h-6 w-6" />
-              </span>
-              <h3 className="mt-5 font-heading text-xl font-bold text-gray-950 dark:text-white">
-                {service.title}
-              </h3>
-              <p className="mt-3 text-sm leading-7 text-gray-600 dark:text-gray-300">
-                {service.description}
-              </p>
-            </article>
-          ))}
-        </div>
-
-        <div className="mt-10 grid overflow-hidden rounded-lg border border-gray-200 bg-white text-sm font-semibold text-gray-700 shadow-sm dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300 md:grid-cols-4">
-          {processSteps.map((step, index) => (
-            <div
-              key={step}
-              className="flex items-center gap-3 border-b border-gray-200 px-5 py-4 dark:border-gray-800 md:border-b-0 md:border-r md:last:border-r-0"
-            >
-              <span className="font-heading text-lg font-bold text-accent">
-                0{index + 1}
-              </span>
-              {step}
+          <div className="order-1 self-start sm:col-span-2 lg:order-2 lg:col-span-1">
+            <p className="max-w-md text-base font-medium leading-relaxed lg:text-lg">
+              Investigamos, diseñamos e iteramos para transformar los retos de
+              tu negocio en productos digitales que las personas quieran usar.
+            </p>
+            <div className="mt-7">
+              <ActionLink href="#servicios">Lo que hacemos</ActionLink>
             </div>
-          ))}
+            <p className="mt-8 text-xs text-gray-500">
+              Desde Bolivia. Para donde quieras llegar.
+            </p>
+          </div>
+          <div className="relative order-3 aspect-3/2 overflow-hidden rounded-2xl bg-canvas">
+            <Image
+              src={`${imageRoot}hf_20260516_090133_c157d30b-a99a-4477-bec1-a446149ec3f2.png`}
+              alt="Referencia visual de colaboración en un estudio creativo"
+              fill
+              unoptimized
+              sizes="(min-width: 1024px) 43vw, (min-width: 640px) 50vw, 100vw"
+              className="object-cover"
+            />
+          </div>
+        </div>
+        <div
+          id="servicios"
+          className="mt-16 border-t border-gray-200 pt-8 lg:mt-24"
+        >
+          <div className="mb-8 flex flex-wrap items-center justify-between gap-3">
+            <h3 className="font-sans text-xl font-medium">
+              De principio a producto.
+            </h3>
+            <p className="text-xs text-gray-500">
+              Descubrimiento / Diseño / Desarrollo / Lanzamiento
+            </p>
+          </div>
+          <div className="grid gap-x-8 sm:grid-cols-2 lg:grid-cols-3">
+            {services.map((service, index) => (
+              <details
+                key={service.title}
+                className="group border-b border-gray-200 py-5"
+              >
+                <summary className="flex cursor-pointer list-none items-center gap-4 text-sm font-medium">
+                  <span className="text-xs text-gray-400">0{index + 1}</span>
+                  {service.title}
+                  <span
+                    aria-hidden="true"
+                    className="ml-auto text-xl font-normal transition-transform group-open:rotate-45"
+                  >
+                    +
+                  </span>
+                </summary>
+                <p className="pt-4 text-sm leading-7 text-gray-600">
+                  {service.description}
+                </p>
+              </details>
+            ))}
+          </div>
         </div>
       </div>
     </section>

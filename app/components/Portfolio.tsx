@@ -1,111 +1,103 @@
 import Image from "next/image";
-import Link from "next/link";
-import { IconArrowRight, IconExternalLink } from "@tabler/icons-react";
+import IconArrowUpRight from "@tabler/icons-react/dist/esm/icons/IconArrowUpRight.mjs";
+import SectionLabel from "./SectionLabel";
 
 const projects = [
   {
     title: "Plataforma comercial B2B",
-    category: "SaaS",
+    category: "Producto digital / SaaS",
     description:
-      "CRM operativo con pipeline de ventas, reportes y automatización para equipos comerciales distribuidos.",
+      "Un solo lugar para gestionar oportunidades, conectar equipos y avanzar cada venta.",
     image: "/images/design.png",
-    technologies: ["Next.js", "TypeScript", "PostgreSQL"],
+    technologies: "Next.js · TypeScript · PostgreSQL",
   },
   {
     title: "Dashboard financiero",
-    category: "Fintech",
+    category: "Experiencia de usuario / Fintech",
     description:
-      "Panel ejecutivo con métricas de liquidez, conciliación y alertas para toma de decisiones en tiempo real.",
+      "Información compleja convertida en decisiones claras para el día a día del negocio.",
     image: "/images/12690.jpg",
-    technologies: ["React", "Node.js", "Cloud"],
+    technologies: "React · Node.js · Cloud",
   },
   {
-    title: "Sistema interno de operaciones",
-    category: "Operaciones",
+    title: "Sistema de operaciones",
+    category: "Desarrollo web / Operaciones",
     description:
-      "Aplicación web para controlar órdenes, responsables, estados y trazabilidad desde una única interfaz.",
+      "Órdenes, responsables y trazabilidad en una experiencia pensada para trabajar mejor.",
     image: "/images/3138862.jpg",
-    technologies: ["Next.js", "API", "DevOps"],
+    technologies: "Next.js · API · DevOps",
   },
 ];
 
 export default function Portfolio() {
   return (
-    <section
-      id="portafolio"
-      className="section-padding relative overflow-hidden bg-white dark:bg-gray-900 transition-colors duration-300"
-    >
-      <div className="absolute inset-0 bg-grid-soft opacity-70" />
-
-      <div className="container-custom relative z-10">
-        <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
-          <div className="lg:col-span-7">
-            <p className="section-eyebrow text-primary">Portafolio</p>
-            <h2 className="section-title mt-3">
-              Casos de trabajo con intención, métricas y una base técnica seria.
-            </h2>
-          </div>
-          <p className="section-copy lg:col-span-5">
-            Estos ejemplos muestran el tipo de producto que construimos:
-            interfaces enfocadas, integraciones útiles y entregables listos para
-            operar.
+    <section id="portafolio" className="bg-mist py-16 sm:py-20 lg:py-28">
+      <div className="mx-auto max-w-studio px-5 sm:px-8 lg:px-12">
+        <SectionLabel number="2">Del concepto a la experiencia</SectionLabel>
+        <div className="mb-10 flex flex-col justify-between gap-5 sm:mb-14 md:flex-row md:items-end">
+          <h2 className="font-sans text-hero font-medium text-ink">
+            Nuestros proyectos.
+          </h2>
+          <p className="max-w-xs text-sm leading-6 text-gray-600">
+            Una selección de los tipos de producto que diseñamos y construimos.
           </p>
         </div>
-
-        <div className="mt-12 grid gap-6 lg:grid-cols-3">
-          {projects.map((project) => (
-            <article
-              key={project.title}
-              className="surface-card group overflow-hidden transition duration-300 hover:-translate-y-1 hover:shadow-lg"
-            >
-              <div className="relative h-56 overflow-hidden bg-gray-900">
+        <div className="grid items-start gap-x-7 gap-y-12 md:grid-cols-2">
+          {projects.map((project, index) => (
+            <article key={project.title}>
+              <a
+                href={`mailto:hola@mvp.dev?subject=${encodeURIComponent(`Consulta: ${project.title}`)}`}
+                aria-label={`Consultar por un proyecto similar a ${project.title}`}
+                className={`group relative block overflow-hidden rounded-2xl bg-ink ${index === 1 ? "aspect-square" : "aspect-project"}`}
+              >
                 <Image
                   src={project.image}
-                  alt={project.title}
+                  alt={`Referencia visual para ${project.title.toLowerCase()}`}
                   fill
-                  className="object-cover transition duration-500 group-hover:scale-105"
-                  sizes="(min-width: 1024px) 33vw, 100vw"
+                  sizes="(min-width: 768px) 50vw, 100vw"
+                  className="object-cover transition-transform duration-500 group-hover:scale-105 motion-reduce:transform-none"
                 />
-                <div className="absolute inset-0 bg-gray-950/35" />
-                <span className="absolute left-4 top-4 rounded-md bg-white px-3 py-1 text-xs font-bold text-primary shadow-sm">
+                <div className="absolute inset-0 bg-linear-to-t from-black/35 to-transparent" />
+                <span className="absolute left-4 top-4 rounded-full bg-white/95 px-3 py-1.5 text-xs text-ink">
                   {project.category}
                 </span>
-              </div>
-
-              <div className="p-6">
-                <h3 className="font-heading text-xl font-bold text-gray-950 dark:text-white">
+                <span className="absolute bottom-4 left-4 flex h-11 items-center gap-3 rounded-full bg-white px-4 text-sm font-medium text-ink">
+                  <span className="md:max-w-0 md:overflow-hidden md:whitespace-nowrap md:transition-all md:duration-300 md:group-hover:max-w-40 md:group-focus-visible:max-w-40">
+                    Crear algo similar
+                  </span>
+                  <IconArrowUpRight
+                    aria-hidden="true"
+                    size={18}
+                    className="transition-transform group-hover:rotate-45"
+                  />
+                </span>
+              </a>
+              <p className="mt-4 text-sm leading-relaxed text-gray-600">
+                {project.description}
+              </p>
+              <div className="mt-2 flex flex-wrap items-center justify-between gap-2">
+                <h3 className="font-sans text-base font-semibold text-ink">
                   {project.title}
                 </h3>
-                <p className="mt-3 line-clamp-2 text-sm leading-7 text-gray-600 dark:text-gray-300">
-                  {project.description}
-                </p>
-                <div className="mt-5 flex flex-wrap gap-2">
-                  {project.technologies.map((tech) => (
-                    <span
-                      key={tech}
-                      className="rounded-md bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-700 dark:bg-gray-800 dark:text-gray-300"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-                <Link
-                  href="#contacto"
-                  className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-primary transition hover:text-secondary"
-                >
-                  Conversar sobre un caso similar
-                  <IconArrowRight className="h-4 w-4" />
-                </Link>
+                <p className="text-xs text-gray-500">{project.technologies}</p>
               </div>
             </article>
           ))}
-        </div>
-
-        <div className="mt-12 flex justify-center">
-          <Link href="#contacto" className="btn-primary">
-            Iniciar diagnóstico
-            <IconExternalLink className="h-5 w-5" />
-          </Link>
+          <div className="flex flex-col items-start justify-center self-stretch py-8 md:px-8">
+            <p className="mb-5 text-xs tracking-widest text-gray-500">
+              EL SIGUIENTE PODRÍA SER EL TUYO
+            </p>
+            <h3 className="max-w-sm font-sans text-editorial font-medium text-ink">
+              Una buena idea merece cobrar vida.
+            </h3>
+            <a
+              href="#contacto"
+              className="mt-8 inline-flex items-center gap-3 border-b border-ink pb-2 text-sm"
+            >
+              Cuéntanos qué tienes en mente
+              <IconArrowUpRight aria-hidden="true" size={18} />
+            </a>
+          </div>
         </div>
       </div>
     </section>

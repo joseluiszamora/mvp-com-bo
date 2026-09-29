@@ -1,121 +1,66 @@
-import Image from "next/image";
-import Link from "next/link";
-import {
-  IconArrowRight,
-  IconChartBar,
-  IconCode,
-  IconShieldCheck,
-} from "@tabler/icons-react";
+"use client";
+
+import dynamic from "next/dynamic";
+import IconArrowRight from "@tabler/icons-react/dist/esm/icons/IconArrowRight.mjs";
+import IconRocket from "@tabler/icons-react/dist/esm/icons/IconRocket.mjs";
+import IconDeviceDesktop from "@tabler/icons-react/dist/esm/icons/IconDeviceDesktop.mjs";
+import IconShieldCheck from "@tabler/icons-react/dist/esm/icons/IconShieldCheck.mjs";
+import Header from "./Header";
+import ActionLink from "./ActionLink";
+
+const HeroShader = dynamic(() => import("./HeroShader"), { ssr: false });
 
 const proofPoints = [
-  {
-    icon: IconCode,
-    title: "Producto",
-    description: "Diseño, arquitectura y desarrollo de software a medida.",
-  },
-  {
-    icon: IconChartBar,
-    title: "Crecimiento",
-    description: "Plataformas preparadas para métricas, ventas y operación.",
-  },
-  {
-    icon: IconShieldCheck,
-    title: "Confianza",
-    description: "Código mantenible, soporte claro y despliegues controlados.",
-  },
-];
-
-const metrics = [
-  { value: "8+", label: "años creando software" },
-  { value: "45+", label: "productos lanzados" },
-  { value: "99%", label: "foco en estabilidad" },
+  { value: "8+", label: "años creando software", delay: "delay-150", icon: IconRocket },
+  { value: "45+", label: "productos digitales", delay: "delay-300", icon: IconDeviceDesktop },
+  { value: "99%", label: "foco en estabilidad", delay: "delay-500", icon: IconShieldCheck },
 ];
 
 export default function Hero() {
   return (
     <section
       id="inicio"
-      className="relative overflow-hidden bg-gray-950 pt-32 pb-20 lg:pt-40 lg:pb-24"
+      className="relative flex min-h-svh flex-col overflow-hidden bg-canvas"
     >
-      <Image
-        src="/images/3138862.jpg"
-        alt=""
-        fill
-        className="object-cover opacity-45"
-        priority
-        sizes="100vw"
-      />
-      <div className="absolute inset-0 bg-gray-950/75" />
-      <div className="absolute inset-0 bg-grid-soft opacity-40" />
-
-      <div className="container-custom relative z-10">
-        <div className="grid items-center gap-12 lg:grid-cols-12">
-          <div className="max-w-3xl lg:col-span-7">
-            <p className="section-eyebrow text-accent">
-              Desarrollo de software para empresas
-            </p>
-            <h1 className="mt-5 text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl">
-              Convertimos operaciones complejas en productos digitales claros.
-            </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-gray-300">
-              Diseñamos y construimos plataformas web, apps y sistemas internos
-              para equipos que necesitan vender, medir y escalar sin perder
-              control técnico.
-            </p>
-
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Link href="#contacto" className="btn-primary">
-                Cotizar proyecto
-                <IconArrowRight className="h-5 w-5" />
-              </Link>
-              <Link href="#portafolio" className="btn-secondary">
-                Ver casos de trabajo
-              </Link>
-            </div>
-
-            <div className="mt-10 grid gap-4 sm:grid-cols-3">
-              {metrics.map((metric) => (
-                <div
-                  key={metric.label}
-                  className="border-l border-white/20 pl-4"
-                >
-                  <p className="font-heading text-3xl font-bold text-white">
-                    {metric.value}
-                  </p>
-                  <p className="mt-1 text-sm leading-6 text-gray-300">
-                    {metric.label}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="lg:col-span-5">
-            <div className="grid gap-4">
-              {proofPoints.map((point) => (
-                <article
-                  key={point.title}
-                  className="surface-card bg-white/95 p-5 shadow-lg dark:bg-gray-900/90"
-                >
-                  <div className="flex items-start gap-4">
-                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-primary text-white">
-                      <point.icon className="h-6 w-6" />
-                    </span>
-                    <div>
-                      <h2 className="font-heading text-lg font-bold text-gray-950 dark:text-white">
-                        {point.title}
-                      </h2>
-                      <p className="mt-1 text-sm leading-6 text-gray-600 dark:text-gray-300">
-                        {point.description}
-                      </p>
-                    </div>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </div>
+      <HeroShader />
+      <Header />
+      <main className="relative z-10 mx-auto flex w-full max-w-studio flex-1 flex-col items-center justify-end px-5 pb-8 pt-24 text-center sm:px-8 sm:pb-9 lg:px-12">
+        <div className="mb-5 inline-flex animate-hero-in items-center gap-2 rounded-md border border-primary/20 bg-white/75 px-3.5 py-2 text-xs font-medium text-ink shadow-sm backdrop-blur-sm sm:mb-6 sm:text-sm motion-reduce:animate-none">
+          <span className="flex h-5 w-5 items-center justify-center rounded-full bg-primary/10 text-primary" aria-hidden="true">
+            <IconArrowRight size={14} />
+          </span>
+          Diseño, desarrollo & estrategia digital
         </div>
-      </div>
+        <h1 className="max-w-5xl animate-hero-in font-sans text-hero font-medium text-ink motion-reduce:animate-none">
+          <span className="block">Ideas claras. Productos digitales.</span>
+          <span className="mt-1 block delay-150 animate-hero-in motion-reduce:animate-none">
+            Tu negocio, <span className="font-serif italic text-primary">hacia delante.</span>
+          </span>
+        </h1>
+        <p className="mt-5 max-w-xl animate-hero-soft text-base leading-relaxed text-gray-600 delay-300 motion-reduce:animate-none sm:mt-6 sm:text-lg">
+          Diseñamos y construimos plataformas web, apps y sistemas para que tu equipo pueda crecer con confianza.
+        </p>
+        <div className="mt-7 flex w-full animate-hero-soft flex-col items-stretch gap-3 delay-500 motion-reduce:animate-none sm:mt-8 sm:w-auto sm:flex-row sm:items-center sm:gap-4">
+          <ActionLink mobileFullWidth href="#contacto">Solicitar un diagnóstico</ActionLink>
+          <a href="#servicios" className="inline-flex h-12 w-full items-center justify-center gap-3 rounded-full border border-ink/15 bg-white/65 px-6 text-sm font-medium text-ink shadow-sm backdrop-blur-sm transition-colors hover:border-primary/50 hover:bg-white sm:w-auto">
+            Explorar servicios
+            <IconArrowRight aria-hidden="true" size={17} />
+          </a>
+        </div>
+        <div aria-hidden="true" className="mt-9 hidden animate-hero-soft delay-500 sm:block motion-reduce:animate-none">
+          <span className="block h-8 w-px bg-gradient-to-b from-primary/70 to-transparent" />
+        </div>
+        <div className="mt-9 grid w-full max-w-4xl animate-hero-soft grid-cols-1 gap-4 border-t border-ink/10 pt-6 delay-500 motion-reduce:animate-none sm:mt-2 sm:grid-cols-3 sm:gap-5 sm:pt-5">
+          {proofPoints.map((point) => (
+            <div key={point.label} className={`flex animate-hero-stat items-center justify-center gap-3 text-left ${point.delay} motion-reduce:animate-none sm:justify-center`}>
+              <point.icon aria-hidden="true" size={21} stroke={1.5} className="shrink-0 text-primary" />
+              <p className="text-sm leading-snug text-gray-600">
+                <span className="font-semibold text-ink">{point.value}</span> {point.label}
+              </p>
+            </div>
+          ))}
+        </div>
+      </main>
     </section>
   );
 }

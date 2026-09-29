@@ -1,119 +1,157 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import Link from "next/link";
-import Image from "next/image";
-import { IconMenu2, IconX } from "@tabler/icons-react";
-import ThemeToggle from "./ThemeToggle";
+import { useEffect, useRef, useState } from "react";
+import IconClock from "@tabler/icons-react/dist/esm/icons/IconClock.mjs";
+import IconMenu2 from "@tabler/icons-react/dist/esm/icons/IconMenu2.mjs";
+import IconX from "@tabler/icons-react/dist/esm/icons/IconX.mjs";
+import ActionLink from "./ActionLink";
 
-const navLinks = [
-  { href: "#inicio", label: "Inicio" },
+const links = [
+  { href: "#portafolio", label: "Proyectos" },
+  { href: "#estudio", label: "Estudio" },
   { href: "#servicios", label: "Servicios" },
-  { href: "#portafolio", label: "Portafolio" },
-  { href: "#testimonios", label: "Testimonios" },
-  { href: "#contacto", label: "Contacto" },
+  { href: "#contacto", label: "Conversemos" },
 ];
 
 export default function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-
+  const [time, setTime] = useState("--:--");
+  const [open, setOpen] = useState(false);
+  const dialog = useRef<HTMLDialogElement>(null);
+  const trigger = useRef<HTMLButtonElement>(null);
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const update = () =>
+      setTime(
+        new Intl.DateTimeFormat("es-BO", {
+          timeZone: "America/La_Paz",
+          hour: "2-digit",
+          minute: "2-digit",
+          hourCycle: "h23",
+        }).format(new Date()),
+      );
+    update();
+    const timer = setInterval(update, 1000);
+    return () => clearInterval(timer);
   }, []);
-
+  useEffect(() => {
+    if (!open) return;
+    const sheet = dialog.current;
+    const opener = trigger.current;
+    sheet?.showModal();
+    const overflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const desktop = window.matchMedia("(min-width: 768px)");
+    const closeOnDesktop = () => {
+      if (desktop.matches) setOpen(false);
+    };
+    desktop.addEventListener("change", closeOnDesktop);
+    return () => {
+      sheet?.close();
+      document.body.style.overflow = overflow;
+      desktop.removeEventListener("change", closeOnDesktop);
+      opener?.focus();
+    };
+  }, [open]);
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-white/90 dark:bg-gray-950/90 backdrop-blur-md shadow-md py-3"
-          : "bg-white/75 dark:bg-gray-950/70 backdrop-blur-sm py-4"
-      }`}
-    >
-      <div className="container-custom">
-        <nav className="flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-3 group">
-            <Image
-              src="/icon.png"
-              alt="MVP.dev"
-              width={120}
-              height={32}
-              className="h-8 w-auto object-contain"
-              priority
-            />
-            <span className="sr-only">MVP.dev</span>
-          </Link>
-
-          <div className="hidden lg:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <Link
+    <header className="relative z-20 mx-auto w-full max-w-studio p-2 sm:p-3">
+      <nav
+        aria-label="Navegación principal"
+        className="flex items-center justify-between rounded-full bg-white p-1.5"
+      >
+        <div className="flex items-center gap-7">
+          <a
+            href="#inicio"
+            aria-label="MVP, inicio"
+            className="flex h-10 w-10 items-center justify-center rounded-full bg-ink text-xs font-bold tracking-tighter text-white"
+          >
+            MVP
+          </a>
+          <div className="hidden items-center gap-6 md:flex">
+            {links.map((link) => (
+              <a
                 key={link.href}
                 href={link.href}
-                className="text-sm font-semibold text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors relative group py-2"
+                className="text-sm transition-colors hover:text-gray-500"
               >
                 {link.label}
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full" />
-              </Link>
+              </a>
             ))}
-          </div>
-
-          <div className="hidden lg:flex items-center gap-4">
-            <ThemeToggle />
-            <Link href="#contacto" className="btn-primary">
-              Cotizar Proyecto
-            </Link>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <div className="flex items-center gap-3 lg:hidden">
-            <ThemeToggle />
-            <button
-              type="button"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="p-2 text-gray-700 dark:text-gray-300 hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-gray-950 rounded-md"
-              aria-label={isMenuOpen ? "Cerrar menú" : "Abrir menú"}
-              aria-expanded={isMenuOpen}
-            >
-              {isMenuOpen ? (
-                <IconX className="w-6 h-6" />
-              ) : (
-                <IconMenu2 className="w-6 h-6" />
-              )}
-            </button>
-          </div>
-        </nav>
-
-        {/* Mobile Menu */}
-        <div
-          className={`lg:hidden overflow-hidden transition-all duration-300 ${
-            isMenuOpen ? "max-h-96 mt-4" : "max-h-0"
-          }`}
-        >
-          <div className="flex flex-col gap-2 bg-white dark:bg-gray-900 rounded-lg p-4 shadow-lg border border-gray-100 dark:border-gray-800">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={() => setIsMenuOpen(false)}
-                className="text-gray-700 dark:text-gray-300 hover:text-primary hover:bg-primary/5 dark:hover:bg-primary/10 font-semibold transition-all py-3 px-4 rounded-md"
-              >
-                {link.label}
-              </Link>
-            ))}
-            <Link
-              href="#contacto"
-              onClick={() => setIsMenuOpen(false)}
-              className="btn-primary text-center mt-4"
-            >
-              Cotizar Proyecto
-            </Link>
           </div>
         </div>
-      </div>
+        <div className="hidden items-center gap-5 md:flex">
+          <span className="hidden text-xs text-gray-600 xl:block">
+            De tu primera idea al lanzamiento
+          </span>
+          <span className="hidden items-center gap-1.5 text-xs text-gray-600 lg:flex">
+            <IconClock aria-hidden="true" size={14} />
+            {time} en La Paz
+          </span>
+          <ActionLink dark>Hablemos de tu idea</ActionLink>
+        </div>
+        <button
+          ref={trigger}
+          type="button"
+          onClick={() => setOpen(true)}
+          aria-haspopup="dialog"
+          aria-expanded={open}
+          aria-controls="mobile-menu"
+          className="flex items-center gap-2 rounded-full bg-ink px-5 py-3 text-sm text-white md:hidden"
+        >
+          Menú
+          <IconMenu2 aria-hidden="true" size={18} />
+        </button>
+      </nav>
+      <dialog
+        id="mobile-menu"
+        ref={dialog}
+        aria-labelledby="menu-title"
+        onCancel={() => setOpen(false)}
+        onKeyDown={(event) => {
+          if (event.key === "Escape") setOpen(false);
+        }}
+        onClick={(e) => {
+          if (e.target === e.currentTarget) setOpen(false);
+        }}
+        className="fixed inset-0 m-0 h-dvh max-h-none w-full max-w-none bg-transparent p-3 text-ink backdrop:bg-black/60"
+      >
+        <div
+          className={`absolute inset-x-3 bottom-3 rounded-2xl bg-white p-6 transition-transform duration-500 ease-roll motion-reduce:transition-none starting:translate-y-full ${open ? "translate-y-0" : "translate-y-full"}`}
+        >
+          <div className="mb-8 flex items-center justify-between">
+            <p id="menu-title" className="text-sm text-gray-500">
+              MVP Studio · {time} en La Paz
+            </p>
+            <button
+              onClick={() => setOpen(false)}
+              aria-label="Cerrar menú"
+              className="rounded-full bg-mist p-3"
+            >
+              <IconX size={20} />
+            </button>
+          </div>
+          <nav
+            aria-label="Navegación móvil"
+            className="mb-8 flex flex-col gap-5"
+          >
+            {links.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={() => setOpen(false)}
+                className="text-3xl font-medium tracking-tight"
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
+          <a
+            href="#contacto"
+            onClick={() => setOpen(false)}
+            className="block rounded-full bg-primary px-6 py-4 text-center font-medium text-white"
+          >
+            Empezar un proyecto ↗
+          </a>
+        </div>
+      </dialog>
     </header>
   );
 }
